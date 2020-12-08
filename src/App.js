@@ -1,25 +1,40 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import CreateSurvey from './CreateSurvey';
+import Survey from './Survey';
+import Results from './Results';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+		this.state = {
+			showCreateSurvey: false,
+		};
+		this.showCreateSurvey = this.showCreateSurvey.bind(this);
+
+	}
+
+	showCreateSurvey() {
+		this.setState({showCreateSurvey: true})
+	}
+
+  componentDidMount(){
+    document.title = "Survey Systemic Consensus"
+  }
+
+  render() {
+  	return (
+			<div className="App">
+	      <h1>Survey Systemic Consensus</h1>
+	      <button onClick={this.showCreateSurvey}>Start your survey</button>
+	      <CreateSurvey />
+	      <Survey />
+	      <Results />
+	    </div>
+  	)
+  }
+};
 
 export default App;
