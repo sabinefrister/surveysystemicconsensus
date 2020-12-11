@@ -10,14 +10,17 @@ class App extends Component {
   constructor(props) {
     super(props);
 		this.state = {
+			showLanding: true,
 			showCreateSurvey: false,
+			showSurvey: false,
+			showResults: false
 		};
 		this.showCreateSurvey = this.showCreateSurvey.bind(this);
 
 	}
 
 	showCreateSurvey() {
-		this.setState({showCreateSurvey: true})
+		this.setState({showCreateSurvey: true, showLanding: false})
 	}
 
   componentDidMount(){
@@ -28,10 +31,13 @@ class App extends Component {
   	return (
 			<div className="App">
 	      <h1>Survey Systemic Consensus</h1>
-	      <button onClick={this.showCreateSurvey}>Start your survey</button>
-	      <CreateSurvey />
-	      <Survey />
-	      <Results />
+
+	      {this.state.showLanding && 
+					<button onClick={this.showCreateSurvey}>Start your survey</button>
+				}
+	      {this.state.showCreateSurvey && <CreateSurvey />}
+	      {this.state.showSurvey && <Survey />}
+	      {this.state.showResults && <Results />}
 	    </div>
   	)
   }
