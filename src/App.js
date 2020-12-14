@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import CreateSurvey from './CreateSurvey';
 import Survey from './Survey';
 import Results from './Results';
-
 import './App.css';
 
 
@@ -31,7 +30,6 @@ class App extends Component {
   	return (
 			<div className="App">
 	      <h1>Survey Systemic Consensus</h1>
-
 	      {this.state.showLanding && 
 					<button onClick={this.showCreateSurvey}>Start your survey</button>
 				}
