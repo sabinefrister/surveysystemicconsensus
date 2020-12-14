@@ -12,14 +12,20 @@ class App extends Component {
 			showLanding: true,
 			showCreateSurvey: false,
 			showSurvey: false,
-			showResults: false
+			showResults: false,
+			surveyData: {}
 		};
 		this.showCreateSurvey = this.showCreateSurvey.bind(this);
+		this.getCreateSurveyData = this.getCreateSurveyData.bind(this);
 
 	}
 
 	showCreateSurvey() {
 		this.setState({showCreateSurvey: true, showLanding: false})
+	}
+
+	getCreateSurveyData(surveyData) {
+		this.setState({surveyData: surveyData, showCreateSurvey: false, showSurvey: true})
 	}
 
   componentDidMount(){
@@ -33,8 +39,10 @@ class App extends Component {
 	      {this.state.showLanding && 
 					<button onClick={this.showCreateSurvey}>Start your survey</button>
 				}
-	      {this.state.showCreateSurvey && <CreateSurvey />}
-	      {this.state.showSurvey && <Survey />}
+	      {this.state.showCreateSurvey && 
+	      	<CreateSurvey getCreateSurveyData={this.getCreateSurveyData} />
+	      }
+	      {this.state.showSurvey && <Survey surveyData={this.state.surveyData} />}
 	      {this.state.showResults && <Results />}
 	    </div>
   	)
