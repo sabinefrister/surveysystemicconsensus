@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import CreateSurvey from './CreateSurvey';
 import Survey from './Survey';
 import Results from './Results';
+import { Container, Segment, Button, Header } from 'semantic-ui-react'
+
 import './App.css';
 
 
@@ -34,17 +36,19 @@ class App extends Component {
 
   render() {
   	return (
-			<div className="App">
-	      <h1>Survey Systemic Consensus</h1>
-	      {this.state.showLanding && 
-					<button onClick={this.showCreateSurvey}>Start your survey</button>
-				}
-	      {this.state.showCreateSurvey && 
-	      	<CreateSurvey getCreateSurveyData={this.getCreateSurveyData} />
-	      }
-	      {this.state.showSurvey && <Survey surveyData={this.state.surveyData} />}
-	      {this.state.showResults && <Results />}
-	    </div>
+  		<Container>
+				<Segment basic>
+		      <Header as='h1'>Survey Systemic Consensus</Header>
+		      {this.state.showLanding && 
+						<Button onClick={this.showCreateSurvey}>Start your survey</Button>
+					}
+		      {this.state.showCreateSurvey && 
+		      	<CreateSurvey getCreateSurveyData={this.getCreateSurveyData} />
+		      }
+		      {this.state.showSurvey && <Survey surveyData={this.state.surveyData} />}
+		      {this.state.showResults && <Results />}
+		    </Segment>
+	    </Container>
   	)
   }
 };

@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import { Formik, Field, Form, ErrorMessage, FieldArray } from 'formik';
+import { Container, Segment, Button, Header, Input } from 'semantic-ui-react'
+import { Form as UIForm } from 'semantic-ui-react'
+
 
 const initialValues = {
 	surveyTitle: '',
@@ -13,7 +16,7 @@ const initialValues = {
 
 const CreateSurvey = (props) => (
   <React.Fragment>
-    <h1>Create your Survey</h1>
+    <Header as='h1'>Create your Survey</Header>
     <Formik
       initialValues={initialValues}
       onSubmit={(surveyData) => {
@@ -26,45 +29,47 @@ const CreateSurvey = (props) => (
             {({ insert, remove, push }) => (
               <div>
                 <label htmlFor="surveyTitle">Survey Title</label>
-              	<Field id="surveyTitle" name="surveyTitle" placeholder="surveyTitle" />
+              	<Field 
+                  id="surveyTitle" 
+                  name="surveyTitle" 
+                  placeholder="surveyTitle"
+                  component={Input}
+                />
                 {values.options.length > 0 &&
                   values.options.map((option, index) => (
-                    <div className="row" key={index}>
-                      <div className="col">
-                        <label htmlFor={`options.${index}.option`}>Option {+(index+1)}</label>
-                        <Field
-                          name={`options.${index}.option`}
-                          placeholder="Your Option"
-                          type="text"
-                        />
-                        <ErrorMessage
-                          name={`options.${index}.option`}
-                          component="div"
-                          className="field-error"
-                        />
-                      </div>
-                      <div className="col">
-                        <button
-                          type="button"
-                          className="secondary"
-                          onClick={() => remove(index)}
-                        >
-                          X
-                        </button>
-                      </div>
-                    </div>
+                    <React.Fragment>
+                      <label htmlFor={`options.${index}.option`}>Option {+(index+1)}</label>
+                      <Field
+                        name={`options.${index}.option`}
+                        placeholder="Your Option"
+                        type="text"
+                        component={Input}
+                      />
+                      <ErrorMessage
+                        name={`options.${index}.option`}
+                        component="div"
+                        className="field-error"
+                      />
+                      <Button
+                        type="button"
+                        className="secondary"
+                        onClick={() => remove(index)}
+                      >
+                        X
+                      </Button>
+                    </React.Fragment>
                   ))}
-                <button
+                <Button
                   type="button"
                   className="secondary"
                   onClick={() => push({ option: ''})}
                 >
                   Add another Option
-                </button>
+                </Button>
               </div>
             )}
           </FieldArray>
-          <button type="submit">Create your survey</button>
+          <Button type="submit">Create your survey</Button>
         </Form>
       )}
     </Formik>
