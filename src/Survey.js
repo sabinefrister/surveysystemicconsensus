@@ -5,6 +5,11 @@ import { Header, Table } from 'semantic-ui-react'
 
 
 class Survey extends Component {
+	constructor(props) {
+    super(props);
+		this.state = {};
+	}
+
 	render() {
     return (
 			<React.Fragment>
@@ -15,12 +20,12 @@ class Survey extends Component {
 				<Table basic='very' celled collapsing>
 			    <Table.Header>
 			      <Table.Row>
-			        <Table.HeaderCell>Name</Table.HeaderCell>
-			        <Table.HeaderCell>Option 1</Table.HeaderCell>
-			        <Table.HeaderCell>Option 2</Table.HeaderCell>
+			      	<Table.HeaderCell>Name</Table.HeaderCell>
+			      	{this.props.surveyData.options.map(option => (
+						    <Table.HeaderCell>abc{option.option}</Table.HeaderCell>
+							))}
 			      </Table.Row>
 			    </Table.Header>
-
 			    <Table.Body>
 			      <Table.Row>
 			        <Table.Cell>Michael</Table.Cell>
