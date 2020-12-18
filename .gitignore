@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+# Optional eslint cache
+.eslintcache
+
 # testing
 /coverage
 
@@ -25,4 +28,3 @@ yarn-error.log*
 
 #files
 src/notes.md
-.eslintcache

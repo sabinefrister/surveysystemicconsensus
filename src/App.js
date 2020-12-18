@@ -19,7 +19,6 @@ class App extends Component {
 		};
 		this.showCreateSurvey = this.showCreateSurvey.bind(this);
 		this.getCreateSurveyData = this.getCreateSurveyData.bind(this);
-
 	}
 
 	showCreateSurvey() {
