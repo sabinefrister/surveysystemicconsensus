@@ -15,18 +15,30 @@ class App extends Component {
 			showCreateSurvey: false,
 			showSurvey: false,
 			showResults: false,
+			createSurveyData: {},
+			attendeeData: [
+				{name: "Michael", option1: 2, option2: 6}, 
+				{name: "Bine", option1: 6, option2: 5},
+				{name: "Nina", option1: 3, option2: 10},
+				{name: "Helmut", option1: 10, option2: 5},
+			],
 			surveyData: {}
 		};
 		this.showCreateSurvey = this.showCreateSurvey.bind(this);
 		this.getCreateSurveyData = this.getCreateSurveyData.bind(this);
+		this.getSurveyData = this.getSurveyData.bind(this);
 	}
 
 	showCreateSurvey() {
 		this.setState({showCreateSurvey: true, showLanding: false})
 	}
 
-	getCreateSurveyData(surveyData) {
-		this.setState({surveyData: surveyData, showCreateSurvey: false, showSurvey: true})
+	getCreateSurveyData(createSurveyData) {
+		this.setState({createSurveyData: createSurveyData, showCreateSurvey: false, showSurvey: true})
+	}	
+
+	getSurveyData(surveyData) {
+		this.setState({surveyData: surveyData, showResults: true})
 	}
 
   componentDidMount(){
@@ -44,7 +56,12 @@ class App extends Component {
 		      {this.state.showCreateSurvey && 
 		      	<CreateSurvey getCreateSurveyData={this.getCreateSurveyData} />
 		      }
-		      {this.state.showSurvey && <Survey surveyData={this.state.surveyData} />}
+		      {this.state.showSurvey && 
+		      	<Survey 
+		      		createSurveyData={this.state.createSurveyData}
+		      		attendeeData={this.state.attendeeData}
+		      		getSurveyData={this.getSurveyData} 
+	      		/>}
 		      {this.state.showResults && <Results />}
 		    </Segment>
 	    </Container>

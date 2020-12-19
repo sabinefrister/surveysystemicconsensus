@@ -11,15 +11,11 @@ class Survey extends Component {
 	}
 
 	render() {
-		const dataFromServer = [
-			{name: "Michael", option1: 2, option2: 6}, 
-			{name: "Bine", option1: 6, option2: 5}
-		]
     return (
 			<React.Fragment>
 				<Header as='h1'>Join this Survey</Header>
-				<p>Here is your link for this survey: <a>https://www.yoursurvey.com</a></p>
-				<Header as='h2'>{this.props.surveyData.surveyTitle}</Header>
+				<p>Here is your link to this survey: <a>https://www.yoursurvey.com</a></p>
+				<Header as='h2'>{this.props.createSurveyData.surveyTitle}</Header>
     		<Formik
     			initialValues={{
     				attendeeName: '',
@@ -27,7 +23,7 @@ class Survey extends Component {
             option2: '',
           }}
 		      onSubmit={(surveyData) => {
-		        console.log(surveyData)
+		        this.props.getSurveyData(surveyData)
 		      }}
 		    >
 		    	<Form>
@@ -35,14 +31,14 @@ class Survey extends Component {
 					    <Table.Header>
 					      <Table.Row>
 					      	<Table.HeaderCell>Name</Table.HeaderCell>
-					      	{this.props.surveyData.options.map(option => (
-								    <Table.HeaderCell>abc{option.option}</Table.HeaderCell>
+					      	{this.props.createSurveyData.options.map(option => (
+								    <Table.HeaderCell>{option.option}</Table.HeaderCell>
 									))}
 					      </Table.Row>
 					    </Table.Header>
 					    <Table.Body>
 					    	{/* user already taken the survey */}
-					    	{dataFromServer.map((attendee, index) => (
+					    	{this.props.attendeeData.map((attendee, index) => (
 						    	<Table.Row key={`${attendee.name}_${index}`}>		
 						        <Table.Cell key={`${attendee.name}_${index}_cell1`}>{attendee.name}</Table.Cell>
 						        <Table.Cell key={`${attendee.name}_${index}_cell2`}>{attendee.option1}</Table.Cell>
@@ -89,5 +85,7 @@ export default Survey;
 
 
 Survey.propTypes = {
-	surveyData: PropTypes.object,
+	cretaeSurveyData: PropTypes.object,
+	attendeeData: PropTypes.array,
+	getSurveyData: PropTypes.func,
 };
