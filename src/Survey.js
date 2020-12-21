@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
-import { Header, Table, Button } from 'semantic-ui-react'
+import { Grid, Header, Button } from 'semantic-ui-react'
 import { Formik, Field, Form, ErrorMessage, FieldArray } from 'formik';
+
+
+const initialValues = {
+	attendeeName: '',
+  options: [
+    {
+      option: '',
+    },
+  ],
+};
 
 
 class Survey extends Component {
@@ -11,72 +21,56 @@ class Survey extends Component {
 	}
 
 	render() {
+		let data = this.props.createSurveyData
     return (
-			<React.Fragment>
+			<Grid>
 				<Header as='h1'>Join this Survey</Header>
 				<p>Here is your link to this survey: <a>https://www.yoursurvey.com</a></p>
 				<Header as='h2'>{this.props.createSurveyData.surveyTitle}</Header>
     		<Formik
-    			initialValues={{
-    				attendeeName: '',
-            option1: '',
-            option2: '',
-          }}
+    			initialValues={initialValues}
 		      onSubmit={(surveyData) => {
 		        this.props.getSurveyData(surveyData)
 		      }}
 		    >
-		    	<Form>
-						<Table basic='very' celled collapsing>
-					    <Table.Header>
-					      <Table.Row>
-					      	<Table.HeaderCell>Name</Table.HeaderCell>
-					      	{this.props.createSurveyData.options.map(option => (
-								    <Table.HeaderCell>{option.option}</Table.HeaderCell>
-									))}
-					      </Table.Row>
-					    </Table.Header>
-					    <Table.Body>
-					    	{/* user already taken the survey */}
-					    	{this.props.attendeeData.map((attendee, index) => (
-						    	<Table.Row key={`${attendee.name}_${index}`}>		
-						        <Table.Cell key={`${attendee.name}_${index}_cell1`}>{attendee.name}</Table.Cell>
-						        <Table.Cell key={`${attendee.name}_${index}_cell2`}>{attendee.option1}</Table.Cell>
-						        <Table.Cell key={`${attendee.name}_${index}_cell3`}>{attendee.option2}</Table.Cell>
-						      </Table.Row>
-					    	))}
+			    	<Form>
+				    	<FieldArray name="options">
+	              <React.Fragment>
+						    	<Grid.Row>
+				            <Grid.Column>
+			                <label htmlFor="attendeeName">Name</label>
+					    				<Field 
+					              id="attendeeName" 
+					              name="attendeeName" 
+					              placeholder="name"
+					            />
+				            </Grid.Column>
+			            </Grid.Row> 
+			            {data.options.length > 0 &&
+                		data.options.map((option, index) => (
+			            <Grid.Row>
+				            <Grid.Column>
+					            <label htmlFor={`options.${index}.option`}>{option.option}</label>
+                      <Field
+                        name={`options.${index}.option`}
+                        placeholder="1 ... 10"
+                        type="number"
+                      />
+                      <ErrorMessage
+                      name={`options.${index}.option`}
+                      component="div"
+                      className="field-error"
+                    />
+			            	</Grid.Column>
+			            </Grid.Row> 
+			            ))}
+				        	<Button type="submit">Submit your choices</Button>
+		        		</React.Fragment>
+		          </FieldArray>
+			    	</Form>
 
-					    	<Table.Row>		
-					        <Table.Cell>
-					        	<Field 
-		                  id="attendeeName" 
-		                  name="attendeeName" 
-		                  placeholder="name"
-		                />
-					        </Table.Cell>	
-					        <Table.Cell>
-					        	<Field 
-		                  id="option1" 
-		                  name="option1" 
-		                  placeholder="1 ... 10"
-		                />
-					        </Table.Cell>	
-					        <Table.Cell>
-					        	<Field 
-		                  id="option2" 
-		                  name="option2" 
-		                  placeholder="1 ... 10"
-		                />
-					        </Table.Cell>
-					        <Table.Cell>
-					        	<Button type="submit">Submit your choices</Button>
-					        </Table.Cell>
-					      </Table.Row>
-					    </Table.Body>
-				    </Table>
-		    	</Form>
       	</Formik>
-			</React.Fragment>
+			</Grid>
     );
   }
 }
@@ -85,7 +79,6 @@ export default Survey;
 
 
 Survey.propTypes = {
-	cretaeSurveyData: PropTypes.object,
-	attendeeData: PropTypes.array,
+	createSurveyData: PropTypes.object,
 	getSurveyData: PropTypes.func,
 };

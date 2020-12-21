@@ -26,7 +26,7 @@ const CreateSurvey = (props) => (
       {({ values }) => (
         <Form>
           <FieldArray name="options">
-            {({ insert, remove, push }) => (
+            {({ remove, push }) => (
               <React.Fragment>
                 <Grid.Row>
                   <Grid.Column>

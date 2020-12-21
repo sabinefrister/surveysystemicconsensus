@@ -38,7 +38,9 @@ class App extends Component {
 	}	
 
 	getSurveyData(surveyData) {
-		this.setState({surveyData: surveyData, showResults: true})
+		this.setState({surveyData: surveyData, showSurvey: false, showResults: true})
+		console.log("surveyData und attendeeData")
+		console.log(this.state.surveyData, this.state.attendeeData)
 	}
 
   componentDidMount(){
@@ -59,10 +61,14 @@ class App extends Component {
 		      {this.state.showSurvey && 
 		      	<Survey 
 		      		createSurveyData={this.state.createSurveyData}
-		      		attendeeData={this.state.attendeeData}
 		      		getSurveyData={this.getSurveyData} 
 	      		/>}
-		      {this.state.showResults && <Results />}
+		      {this.state.showResults && 
+		      	<Results 
+		      		attendeeData={this.state.attendeeData} 
+		      		createSurveyData={this.state.createSurveyData}
+	      		/>
+	      	}
 		    </Segment>
 	    </Container>
   	)
