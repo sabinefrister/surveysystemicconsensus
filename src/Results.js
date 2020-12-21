@@ -8,6 +8,7 @@ class Results extends Component {
     return (
 			<div>
 				<Header as='h2'>Results of the Survey</Header>
+				<Header as='h3'>{this.props.createSurveyData.surveyTitle}</Header>
 				<Table basic='very' celled collapsing>
 			    <Table.Header>
 			      <Table.Row>
@@ -18,12 +19,12 @@ class Results extends Component {
 			      </Table.Row>
 			    </Table.Header>
 			    <Table.Body>
-			    	{/* user already taken the survey */}
 			    	{this.props.attendeeData.map((attendee, index) => (
-				    	<Table.Row key={`${attendee.name}_${index}`}>		
-				        <Table.Cell key={`${attendee.name}_${index}_cell1`}>{attendee.name}</Table.Cell>
-				        <Table.Cell key={`${attendee.name}_${index}_cell2`}>{attendee.option1}</Table.Cell>
-				        <Table.Cell key={`${attendee.name}_${index}_cell3`}>{attendee.option2}</Table.Cell>
+				    	<Table.Row>	
+				        <Table.Cell>{attendee.name}</Table.Cell>
+				    		{attendee.options.map((option, index) => (
+				        <Table.Cell>{option.option}</Table.Cell>
+				        ))}
 				      </Table.Row>
 			    	))}
 		    	</Table.Body>

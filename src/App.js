@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CreateSurvey from './CreateSurvey';
 import Survey from './Survey';
 import Results from './Results';
-import { Container, Segment, Button, Header } from 'semantic-ui-react'
+import { Grid, Segment, Button, Header } from 'semantic-ui-react'
 
 import './App.css';
 
@@ -17,10 +17,12 @@ class App extends Component {
 			showResults: false,
 			createSurveyData: {},
 			attendeeData: [
-				{name: "Michael", option1: 2, option2: 6}, 
-				{name: "Bine", option1: 6, option2: 5},
-				{name: "Nina", option1: 3, option2: 10},
-				{name: "Helmut", option1: 10, option2: 5},
+				{name: "Nino", options: 
+					[{option: 1}, {option: 10}]
+				}, 
+				{name: "Haba", options: 
+					[{option: 5}, {option: 2}]
+				},
 			],
 			surveyData: {}
 		};
@@ -38,9 +40,8 @@ class App extends Component {
 	}	
 
 	getSurveyData(surveyData) {
-		this.setState({surveyData: surveyData, showSurvey: false, showResults: true})
-		console.log("surveyData und attendeeData")
-		console.log(this.state.surveyData, this.state.attendeeData)
+		this.setState({showSurvey: false, showResults: true})
+		this.setState({attendeeData: [...this.state.attendeeData, surveyData], showSurvey: false, showResults: true})
 	}
 
   componentDidMount(){
@@ -49,7 +50,7 @@ class App extends Component {
 
   render() {
   	return (
-  		<Container>
+  		<Grid centered>
 				<Segment basic>
 		      <Header as='h1'>Survey Systemic Consensus</Header>
 		      {this.state.showLanding && 
@@ -70,7 +71,7 @@ class App extends Component {
 	      		/>
 	      	}
 		    </Segment>
-	    </Container>
+	    </Grid>
   	)
   }
 };

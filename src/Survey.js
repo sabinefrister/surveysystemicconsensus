@@ -5,7 +5,7 @@ import { Formik, Field, Form, ErrorMessage, FieldArray } from 'formik';
 
 
 const initialValues = {
-	attendeeName: '',
+	name: '',
   options: [
     {
       option: '',
@@ -38,10 +38,10 @@ class Survey extends Component {
 	              <React.Fragment>
 						    	<Grid.Row>
 				            <Grid.Column>
-			                <label htmlFor="attendeeName">Name</label>
+			                <label htmlFor="name">Name</label>
 					    				<Field 
-					              id="attendeeName" 
-					              name="attendeeName" 
+					              id="name" 
+					              name="name" 
 					              placeholder="name"
 					            />
 				            </Grid.Column>
