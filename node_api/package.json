@@ -1,0 +1,20 @@
+{
+  "name": "node_api",
+  "version": "1.0.0",
+  "description": "Server side for survey systemic consensus react app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.bundle.js",
+    "build": "webpack",
+    "dev": "nodemon ./server.js localhost 3080"
+  },
+  "author": "Sabine Frister",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
