@@ -27,6 +27,12 @@ class Results extends Component {
 				        ))}
 				      </Table.Row>
 			    	))}
+			    	<Table.Row>	
+				        <Table.Cell>Results</Table.Cell>
+				    		{[1,2].map((result, index) => (
+				        <Table.Cell>{result}</Table.Cell>
+				        ))}
+			      </Table.Row>
 		    	</Table.Body>
     		</Table>
 			</div>
