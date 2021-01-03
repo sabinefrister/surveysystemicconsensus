@@ -23,6 +23,7 @@ app.post('/api/user', (request, response) => {
   console.log('Adding user: ', user);
   users.push(user);
   response.json("user added");
+  // negative case?
 });
 
 

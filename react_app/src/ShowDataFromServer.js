@@ -13,26 +13,26 @@ class ShowDataFromServer extends Component {
     this.getAllUsers = this.getAllUsers.bind(this);
   }
 
-  createUser = (e) => {
-    createUser(this.state.user)
+  createUser(data) {
+    createUser(data)
     .then(response => {
       console.log(response);
-      this.setState({numberOfUsers: this.state.numberOfUsers + 1})
     });
   }
 
-  getAllUsers = () => {
+  getAllUsers() {
     getAllUsers()
     .then(users => {
-      console.log("get all users")
-      console.log(users)
       this.setState({users: users, numberOfUsers: users.length})
     });
   }
 
+  componentDidMount(){
+    let users = this.getAllUsers()
+    this.createUser({name: "bari", age: 32})
+  }
+
   render() {
-    let users = getAllUsers()
-    console.log(users)
     return (
       <React.Fragment>
         Hallo

@@ -9,5 +9,5 @@ export async function createUser(data) {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({user: data})
     })
-  return response.json();
+  return await response.json();
 }
