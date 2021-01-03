@@ -5,10 +5,13 @@ const app = express(),
       port = 3080;
 
 // place holder for the data
-const users = [];
+const users = [{name: "krut", age: 12}, {name: "bine", age: 20}];
 
 app.use(bodyParser.json());
 
+app.get('/', (request, response) => {
+  response.json("server is available");
+});
 
 app.get('/api/users', (request, response) => {
   console.log('api/users called!')
@@ -19,7 +22,7 @@ app.post('/api/user', (request, response) => {
   const user = request.body.user;
   console.log('Adding user: ', user);
   users.push(user);
-  response.json("user addedd");
+  response.json("user added");
 });
 
 

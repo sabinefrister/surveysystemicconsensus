@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CreateSurvey from './CreateSurvey';
 import Survey from './Survey';
 import Results from './Results';
+import ShowDataFromServer from './ShowDataFromServer';
 import { Grid, Segment, Button, Header } from 'semantic-ui-react'
 
 import './App.css';
@@ -70,6 +71,8 @@ class App extends Component {
 		      		createSurveyData={this.state.createSurveyData}
 	      		/>
 	      	}
+	      	<div>above show data</div>
+	      	<ShowDataFromServer />
 		    </Segment>
 	    </Grid>
   	)
