@@ -21,16 +21,16 @@ class Survey extends Component {
 	}
 
 	render() {
-		let data = this.props.createSurveyData
+		let data = this.props.surveyData
     return (
 			<Grid>
 				<Header as='h1'>Join this Survey</Header>
 				<p>Here is your link to this survey: <a>https://www.yoursurvey.com</a></p>
-				<Header as='h2'>{this.props.createSurveyData.surveyTitle}</Header>
+				<Header as='h2'>{data.surveyTitle}</Header>
     		<Formik
     			initialValues={initialValues}
 		      onSubmit={(surveyData) => {
-		        this.props.getSurveyData(surveyData)
+		        this.props.getParticipantData(surveyData)
 		      }}
 		    >
 			    	<Form>
@@ -79,6 +79,6 @@ export default Survey;
 
 
 Survey.propTypes = {
-	createSurveyData: PropTypes.object,
-	getSurveyData: PropTypes.func,
+	surveyData: PropTypes.object,
+	getParticipantData: PropTypes.func,
 };

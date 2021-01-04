@@ -8,21 +8,21 @@ class Results extends Component {
     return (
 			<div>
 				<Header as='h2'>Results of the Survey</Header>
-				<Header as='h3'>{this.props.createSurveyData.surveyTitle}</Header>
+				<Header as='h3'>{this.props.surveyData.surveyTitle}</Header>
 				<Table basic='very' celled collapsing>
 			    <Table.Header>
 			      <Table.Row>
 			      	<Table.HeaderCell>Name</Table.HeaderCell>
-			      	{this.props.createSurveyData.options.map(option => (
+			      	{this.props.surveyData.options.map(option => (
 						    <Table.HeaderCell>{option.option}</Table.HeaderCell>
 							))}
 			      </Table.Row>
 			    </Table.Header>
 			    <Table.Body>
-			    	{this.props.attendeeData.map((attendee, index) => (
+			    	{this.props.participantData.map((participant, index) => (
 				    	<Table.Row>	
-				        <Table.Cell>{attendee.name}</Table.Cell>
-				    		{attendee.options.map((option, index) => (
+				        <Table.Cell>{participant.name}</Table.Cell>
+				    		{participant.options.map((option, index) => (
 				        <Table.Cell>{option.option}</Table.Cell>
 				        ))}
 				      </Table.Row>
@@ -44,6 +44,6 @@ export default Results;
 
 
 Results.propTypes = {
-	attendeeData: PropTypes.array,
-	createSurveyData: PropTypes.object,
+	participantData: PropTypes.array,
+	surveyData: PropTypes.object,
 };

@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import CreateSurvey from './CreateSurvey';
 import Survey from './Survey';
 import Results from './Results';
-import ShowDataFromServer from './ShowDataFromServer';
 import { Grid, Segment, Button, Header } from 'semantic-ui-react'
-
-import { createSurvey, postParticipantData } from './apiCall'
+import { createSurvey, postParticipantData, getParticipantData, getSurveyData } from './apiCall'
 
 import './App.css';
 
@@ -18,8 +16,8 @@ class App extends Component {
 			showCreateSurvey: false,
 			showSurvey: false,
 			showResults: false,
-			createSurveyData: {},
-			attendeeData: [
+			surveyData: {},
+			participantData: [
 				{name: "Nino", options: 
 					[{option: 1}, {option: 10}]
 				}, 
@@ -30,28 +28,36 @@ class App extends Component {
 			surveyData: {}
 		};
 		this.showCreateSurvey = this.showCreateSurvey.bind(this);
-		this.getCreateSurveyData = this.getCreateSurveyData.bind(this);
 		this.getSurveyData = this.getSurveyData.bind(this);
+		this.getParticipantData = this.getParticipantData.bind(this);
 	}
 
 	showCreateSurvey() {
 		this.setState({showCreateSurvey: true, showLanding: false})
 	}
 
-	getCreateSurveyData(createSurveyData) {
-		this.setState({createSurveyData: createSurveyData, showCreateSurvey: false, showSurvey: true})
-    createSurvey(createSurveyData)
+	getSurveyData(surveyData) {
+		this.setState({surveyData: surveyData, showCreateSurvey: false, showSurvey: true})
+    createSurvey(surveyData)
     .then(response => {
       console.log(response);
     });
+    getSurveyData()
+    .then(surveyData => {
+    	console.log(surveyData)
+    });
 	}	
 
-	getSurveyData(surveyData) {
+	getParticipantData(participantData) {
 		this.setState({showSurvey: false, showResults: true})
-		this.setState({attendeeData: [...this.state.attendeeData, surveyData], showSurvey: false, showResults: true})
-    postParticipantData(surveyData)
+		this.setState({participantData: [...this.state.participantData, participantData], showSurvey: false, showResults: true})
+    postParticipantData(participantData)
     .then(response => {
       console.log(response);
+    });
+    getParticipantData()
+    .then(participantData => {
+    	console.log(participantData)
     });
 	}
 
@@ -68,21 +74,19 @@ class App extends Component {
 						<Button onClick={this.showCreateSurvey}>Start your survey</Button>
 					}
 		      {this.state.showCreateSurvey && 
-		      	<CreateSurvey getCreateSurveyData={this.getCreateSurveyData} />
+		      	<CreateSurvey getSurveyData={this.getSurveyData} />
 		      }
 		      {this.state.showSurvey && 
 		      	<Survey 
-		      		createSurveyData={this.state.createSurveyData}
-		      		getSurveyData={this.getSurveyData} 
+		      		surveyData={this.state.surveyData}
+		      		getParticipantData={this.getParticipantData} 
 	      		/>}
 		      {this.state.showResults && 
 		      	<Results 
-		      		attendeeData={this.state.attendeeData} 
-		      		createSurveyData={this.state.createSurveyData}
+		      		participantData={this.state.participantData} 
+		      		surveyData={this.state.surveyData}
 	      		/>
 	      	}
-	      	<div>above show data</div>
-	      	<ShowDataFromServer />
 		    </Segment>
 	    </Grid>
   	)

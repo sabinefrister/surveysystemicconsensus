@@ -21,6 +21,16 @@ app.get('/api/users', (request, response) => {
   response.json(users);
 });
 
+app.get('/api/participant-data', (request, response) => {
+  console.log('api/participants called!')
+  response.json(participantDataList);
+});
+
+app.get('/api/survey-data', (request, response) => {
+  console.log('api/survey data called!')
+  response.json(surveyDataList);
+});
+
 app.post('/api/user', (request, response) => {
   const user = request.body.user;
   users.push(user);
