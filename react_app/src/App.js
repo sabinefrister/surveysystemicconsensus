@@ -16,16 +16,9 @@ class App extends Component {
 			showCreateSurvey: false,
 			showSurvey: false,
 			showResults: false,
+			surveyTitle: "Survey123",
 			surveyData: {},
-			participantData: [
-				{name: "Nino", options: 
-					[{option: 1}, {option: 10}]
-				}, 
-				{name: "Haba", options: 
-					[{option: 5}, {option: 2}]
-				},
-			],
-			surveyData: {}
+			participantData: {}
 		};
 		this.showCreateSurvey = this.showCreateSurvey.bind(this);
 		this.getSurveyData = this.getSurveyData.bind(this);
@@ -37,27 +30,36 @@ class App extends Component {
 	}
 
 	getSurveyData(surveyData) {
-		this.setState({surveyData: surveyData, showCreateSurvey: false, showSurvey: true})
+		console.log("data from react")
+   	console.log(surveyData)
     createSurvey(surveyData)
     .then(response => {
       console.log(response);
     });
     getSurveyData()
     .then(surveyData => {
+    	console.log("data from server")
     	console.log(surveyData)
+    	this.setState({
+    		surveyData: {options: surveyData.options}, 
+    		surveyTitle: surveyData.surveyTitle, 
+    		showCreateSurvey: false, 
+    		showSurvey: true })
     });
 	}	
 
 	getParticipantData(participantData) {
-		this.setState({showSurvey: false, showResults: true})
-		this.setState({participantData: [...this.state.participantData, participantData], showSurvey: false, showResults: true})
     postParticipantData(participantData)
     .then(response => {
       console.log(response);
     });
     getParticipantData()
     .then(participantData => {
-    	console.log(participantData)
+			this.setState({
+				participantData: participantData, 
+				showSurvey: false, 
+				showResults: true
+			})
     });
 	}
 
@@ -79,12 +81,14 @@ class App extends Component {
 		      {this.state.showSurvey && 
 		      	<Survey 
 		      		surveyData={this.state.surveyData}
+		      		surveyTitle={this.state.surveyTitle}
 		      		getParticipantData={this.getParticipantData} 
 	      		/>}
 		      {this.state.showResults && 
 		      	<Results 
 		      		participantData={this.state.participantData} 
 		      		surveyData={this.state.surveyData}
+		      		surveyTitle={this.state.surveyTitle}
 	      		/>
 	      	}
 		    </Segment>

@@ -26,7 +26,7 @@ class Survey extends Component {
 			<Grid>
 				<Header as='h1'>Join this Survey</Header>
 				<p>Here is your link to this survey: <a>https://www.yoursurvey.com</a></p>
-				<Header as='h2'>{data.surveyTitle}</Header>
+				<Header as='h2'>{this.props.surveyTitle}</Header>
     		<Formik
     			initialValues={initialValues}
 		      onSubmit={(surveyData) => {
@@ -80,5 +80,6 @@ export default Survey;
 
 Survey.propTypes = {
 	surveyData: PropTypes.object,
+	surveyTitle: PropTypes.string,
 	getParticipantData: PropTypes.func,
 };

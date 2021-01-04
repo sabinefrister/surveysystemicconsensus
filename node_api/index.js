@@ -5,20 +5,14 @@ const app = express(),
       port = 3080;
 
 // place holder for the data
-const users = [];
-const surveyDataList = [];
-const surveyTitle = [];
+let surveyDataList;
+let surveyTitle = "";
 const participantDataList = [];
 
 app.use(bodyParser.json());
 
 app.get('/', (request, response) => {
   response.json("server is available");
-});
-
-app.get('/api/users', (request, response) => {
-  console.log('api/users called!')
-  response.json(users);
 });
 
 app.get('/api/participant-data', (request, response) => {
@@ -28,21 +22,13 @@ app.get('/api/participant-data', (request, response) => {
 
 app.get('/api/survey-data', (request, response) => {
   console.log('api/survey data called!')
-  response.json(surveyDataList);
-});
-
-app.post('/api/user', (request, response) => {
-  const user = request.body.user;
-  users.push(user);
-  console.log('Adding user: ', user);
-  response.json("user added");
-  // negative case?
+  response.json({surveyTitle, options: surveyDataList});
 });
 
 app.post('/api/survey-data', (request, response) => {
   const surveyData = request.body.surveyData;
-  surveyTitle.push(surveyData.surveyTitle)
-  surveyDataList.push(surveyData.options);
+  surveyTitle = surveyData.surveyTitle
+  surveyDataList = surveyData.options;
   console.log('Adding survey: ', surveyData);
   response.json("surveyData added");
   // negative case?
@@ -55,7 +41,6 @@ app.post('/api/participant-data', (request, response) => {
   response.json("participant data added");
   // negative case?
 });
-
 
 app.listen(port, () => {
     console.log(`Server listening on the port::${port}`);

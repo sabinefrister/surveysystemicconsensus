@@ -8,7 +8,7 @@ class Results extends Component {
     return (
 			<div>
 				<Header as='h2'>Results of the Survey</Header>
-				<Header as='h3'>{this.props.surveyData.surveyTitle}</Header>
+				<Header as='h3'>{this.props.surveyTitle}</Header>
 				<Table basic='very' celled collapsing>
 			    <Table.Header>
 			      <Table.Row>
@@ -46,4 +46,5 @@ export default Results;
 Results.propTypes = {
 	participantData: PropTypes.array,
 	surveyData: PropTypes.object,
+	surveyTitle: PropTypes.string,
 };
