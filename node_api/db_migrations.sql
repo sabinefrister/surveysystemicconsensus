@@ -1,6 +1,6 @@
-DROP DATABASE survey_systemic_consensus;
-CREATE DATABASE survey_systemic_consensus;
-SELECT survey_systemic_consensus;
+DROP DATABASE surveysystemicconsensus;
+CREATE DATABASE surveysystemicconsensus;
+SELECT surveysystemicconsensus;
 
 CREATE TABLE surveys (
   survey_id SERIAL PRIMARY KEY,

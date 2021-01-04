@@ -30,3 +30,5 @@
 
 #files
 /react_app/src/notes.md
+
+/node_api/restrictedData.js

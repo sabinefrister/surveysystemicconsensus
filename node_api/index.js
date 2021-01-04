@@ -1,4 +1,5 @@
 const express = require('express');
+const db = require('./queries')
 
 const app = express(),
       bodyParser = require("body-parser");
@@ -20,10 +21,12 @@ app.get('/api/participant-data', (request, response) => {
   response.json(participantDataList);
 });
 
-app.get('/api/survey-data', (request, response) => {
-  console.log('api/survey data called!')
-  response.json({surveyTitle, options: surveyDataList});
-});
+// app.get('/api/survey-data', (request, response) => {
+//   console.log('api/survey data called!')
+//   response.json({surveyTitle, options: surveyDataList});
+// });
+
+app.get('/api/survey-data', db.getSurveys);
 
 app.post('/api/survey-data', (request, response) => {
   const surveyData = request.body.surveyData;
