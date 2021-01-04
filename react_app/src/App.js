@@ -5,6 +5,8 @@ import Results from './Results';
 import ShowDataFromServer from './ShowDataFromServer';
 import { Grid, Segment, Button, Header } from 'semantic-ui-react'
 
+import { createSurvey, postParticipantData } from './apiCall'
+
 import './App.css';
 
 
@@ -38,11 +40,19 @@ class App extends Component {
 
 	getCreateSurveyData(createSurveyData) {
 		this.setState({createSurveyData: createSurveyData, showCreateSurvey: false, showSurvey: true})
+    createSurvey(createSurveyData)
+    .then(response => {
+      console.log(response);
+    });
 	}	
 
 	getSurveyData(surveyData) {
 		this.setState({showSurvey: false, showResults: true})
 		this.setState({attendeeData: [...this.state.attendeeData, surveyData], showSurvey: false, showResults: true})
+    postParticipantData(surveyData)
+    .then(response => {
+      console.log(response);
+    });
 	}
 
   componentDidMount(){

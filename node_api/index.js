@@ -5,7 +5,10 @@ const app = express(),
       port = 3080;
 
 // place holder for the data
-const users = [{name: "krut", age: 12}, {name: "bine", age: 20}];
+const users = [];
+const surveyDataList = [];
+const surveyTitle = [];
+const participantDataList = [];
 
 app.use(bodyParser.json());
 
@@ -20,9 +23,26 @@ app.get('/api/users', (request, response) => {
 
 app.post('/api/user', (request, response) => {
   const user = request.body.user;
-  console.log('Adding user: ', user);
   users.push(user);
+  console.log('Adding user: ', user);
   response.json("user added");
+  // negative case?
+});
+
+app.post('/api/survey-data', (request, response) => {
+  const surveyData = request.body.surveyData;
+  surveyTitle.push(surveyData.surveyTitle)
+  surveyDataList.push(surveyData.options);
+  console.log('Adding survey: ', surveyData);
+  response.json("surveyData added");
+  // negative case?
+});
+
+app.post('/api/participant-data', (request, response) => {
+  const participantData = request.body.participantData;
+  participantDataList.push(participantData);
+  console.log('Adding participant data: ', participantData);
+  response.json("participant data added");
   // negative case?
 });
 
