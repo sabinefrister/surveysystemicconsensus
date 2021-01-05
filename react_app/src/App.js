@@ -21,7 +21,7 @@ class App extends Component {
 		};
 		this.showCreateSurvey = this.showCreateSurvey.bind(this);
 		this.createSurvey = this.createSurvey.bind(this);
-		this.getParticipantData = this.getParticipantData.bind(this);
+		this.createParticipantData = this.createParticipantData.bind(this);
 	}
 
 	showCreateSurvey() {
@@ -29,23 +29,18 @@ class App extends Component {
 	}
 
 	createSurvey(surveyData) {
-		//create survey
-		console.log("data from react")
-   	console.log(surveyData)
     api.createSurvey(surveyData)
     .then(response => {
-    	console.log("response from server")
-      console.log(response);
     	this.setState({
-    		surveyData: {options: surveyData.options}, 
+    		surveyData: {options: response.options}, 
     		surveyTitle: response.survey_name, 
     		showCreateSurvey: false, 
     		showSurvey: true })
     });
 	}	
 
-	getParticipantData(participantData) {
-    api.postParticipantData(participantData)
+	createParticipantData(participantData) {
+    api.createParticipantData(participantData)
     .then(response => {
       console.log(response);
     });
@@ -78,7 +73,7 @@ class App extends Component {
 		      	<Survey 
 		      		surveyData={this.state.surveyData}
 		      		surveyTitle={this.state.surveyTitle}
-		      		getParticipantData={this.getParticipantData} 
+		      		createParticipantData={this.createParticipantData} 
 	      		/>}
 		      {this.state.showResults && 
 		      	<Results 

@@ -30,7 +30,7 @@ class Survey extends Component {
     		<Formik
     			initialValues={initialValues}
 		      onSubmit={(surveyData) => {
-		        this.props.getParticipantData(surveyData)
+		        this.props.createParticipantData(surveyData)
 		      }}
 		    >
 			    	<Form>
@@ -81,5 +81,5 @@ export default Survey;
 Survey.propTypes = {
 	surveyData: PropTypes.object,
 	surveyTitle: PropTypes.string,
-	getParticipantData: PropTypes.func,
+	createParticipantData: PropTypes.func,
 };
