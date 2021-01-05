@@ -3,8 +3,7 @@ import CreateSurvey from './CreateSurvey';
 import Survey from './Survey';
 import Results from './Results';
 import { Grid, Segment, Button, Header } from 'semantic-ui-react'
-import { createSurvey, postParticipantData, getParticipantData, getSurveyData } from './apiCall'
-
+import api from './apiCall'
 import './App.css';
 
 
@@ -21,7 +20,7 @@ class App extends Component {
 			participantData: {}
 		};
 		this.showCreateSurvey = this.showCreateSurvey.bind(this);
-		this.getSurveyData = this.getSurveyData.bind(this);
+		this.createSurvey = this.createSurvey.bind(this);
 		this.getParticipantData = this.getParticipantData.bind(this);
 	}
 
@@ -29,31 +28,28 @@ class App extends Component {
 		this.setState({showCreateSurvey: true, showLanding: false})
 	}
 
-	getSurveyData(surveyData) {
+	createSurvey(surveyData) {
+		//create survey
 		console.log("data from react")
    	console.log(surveyData)
-    createSurvey(surveyData)
+    api.createSurvey(surveyData)
     .then(response => {
+    	console.log("response from server")
       console.log(response);
-    });
-    getSurveyData()
-    .then(surveyData => {
-    	console.log("data from server")
-    	console.log(surveyData)
     	this.setState({
     		surveyData: {options: surveyData.options}, 
-    		surveyTitle: surveyData.surveyTitle, 
+    		surveyTitle: response.survey_name, 
     		showCreateSurvey: false, 
     		showSurvey: true })
     });
 	}	
 
 	getParticipantData(participantData) {
-    postParticipantData(participantData)
+    api.postParticipantData(participantData)
     .then(response => {
       console.log(response);
     });
-    getParticipantData()
+    api.getParticipantData()
     .then(participantData => {
 			this.setState({
 				participantData: participantData, 
@@ -76,7 +72,7 @@ class App extends Component {
 						<Button onClick={this.showCreateSurvey}>Start your survey</Button>
 					}
 		      {this.state.showCreateSurvey && 
-		      	<CreateSurvey getSurveyData={this.getSurveyData} />
+		      	<CreateSurvey createSurvey={this.createSurvey} />
 		      }
 		      {this.state.showSurvey && 
 		      	<Survey 

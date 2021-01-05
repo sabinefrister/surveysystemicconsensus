@@ -1,14 +1,15 @@
-export async function getParticipantData() {
+async function getParticipantData() {
     const response = await fetch('/api/participant-data');
     return await response.json();
 }
 
-export async function getSurveyData() {
+async function getSurveyDataFromServer() {
     const response = await fetch('/api/survey-data');
     return await response.json();
 }
 
-export async function createSurvey(data) {
+async function createSurvey(data) {
+	console.log("inside create Survey api call")
   const response = await fetch(`/api/survey-data`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -17,7 +18,7 @@ export async function createSurvey(data) {
   return await response.json();
 }
 
-export async function postParticipantData(data) {
+async function postParticipantData(data) {
   const response = await fetch(`/api/participant-data`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -25,3 +26,8 @@ export async function postParticipantData(data) {
     })
   return await response.json();
 }
+
+exports.getParticipantData = getParticipantData;
+exports.getSurveyDataFromServer = getSurveyDataFromServer;
+exports.createSurvey = createSurvey;
+exports.postParticipantData = postParticipantData;

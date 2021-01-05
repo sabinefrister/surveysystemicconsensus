@@ -19,8 +19,8 @@ const CreateSurvey = (props) => (
     <Header as='h1'>Create your Survey</Header>
     <Formik
       initialValues={initialValues}
-      onSubmit={(createSurveyData) => {
-        props.getSurveyData(createSurveyData);
+      onSubmit={(surveyData) => {
+        props.createSurvey(surveyData);
       }}
     >
       {({ values }) => (
@@ -82,5 +82,5 @@ export default CreateSurvey;
 
 
 CreateSurvey.propTypes = {
-	getSurveyData: PropTypes.func,
+	createSurvey: PropTypes.func,
 };

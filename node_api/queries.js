@@ -29,18 +29,20 @@ const getParticipantData = (request, response) => {
 
 const createSurvey = (request, response) => {
   const { surveyTitle, options } = request.body.surveyData;
-
-  const surveryLink = "5721cddd-eee4-4a26-b547-ff4767353e8a"
+  // todo validation explizit .string machen
+  const surveyLink = "5721cddd-eee4-4a26-b547-ff4767353e8a"
   // uuid generator
   pool.query(
   	'INSERT INTO surveys (survey_name, options, survey_link) VALUES ($1, $2, $3) RETURNING *', 
-  	[surveyTitle, options, surveryLink], (error, results) => {
+  	[surveyTitle, options, surveyLink], (error, results) => {
     if (error) {
       throw error
     }
-    response.status(201).send(`Survey added with ID: ${results.rows[0].survey_id}`)
+    console.log(results.rows)
+    response.status(201).send(results.rows[0])
   })
 	console.log('Adding survey: ', surveyTitle, options);
+	// todo statt * alle variablen explizit machen, daraus ein javascript object machen und felder einzeln mappen
 }
 
 const createParticipantData = (request, response) => {
@@ -53,10 +55,6 @@ const createParticipantData = (request, response) => {
     response.status(201).send(`User added with ID: ${result.insertId}`)
   })
 }
-
-
-
-
 
 module.exports = {
   getSurveys,
