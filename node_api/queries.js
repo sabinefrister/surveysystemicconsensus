@@ -10,7 +10,6 @@ const pool = new Pool({
 })
 
 const getSurveys = (request, response) => {
-	console.log("inside get surveys")
   pool.query('SELECT * FROM surveys', (error, results) => {
     if (error) {
       throw error
@@ -19,6 +18,49 @@ const getSurveys = (request, response) => {
   })
 }
 
+const getParticipantData = (request, response) => {
+  pool.query('SELECT * FROM surveys', (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
+const createSurvey = (request, response) => {
+  const { surveyTitle, options } = request.body.surveyData;
+
+  const surveryLink = "5721cddd-eee4-4a26-b547-ff4767353e8a"
+  // uuid generator
+  pool.query(
+  	'INSERT INTO surveys (survey_name, options, survey_link) VALUES ($1, $2, $3) RETURNING *', 
+  	[surveyTitle, options, surveryLink], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(201).send(`Survey added with ID: ${results.rows[0].survey_id}`)
+  })
+	console.log('Adding survey: ', surveyTitle, options);
+}
+
+const createParticipantData = (request, response) => {
+  const { name, email } = request.body
+
+  pool.query('INSERT INTO users (name, email) VALUES ($1, $2)', [name, email], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(201).send(`User added with ID: ${result.insertId}`)
+  })
+}
+
+
+
+
+
 module.exports = {
-  getSurveys
+  getSurveys,
+  getParticipantData,
+  createSurvey,
+  createParticipantData
 }

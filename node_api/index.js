@@ -21,21 +21,11 @@ app.get('/api/participant-data', (request, response) => {
   response.json(participantDataList);
 });
 
-// app.get('/api/survey-data', (request, response) => {
-//   console.log('api/survey data called!')
-//   response.json({surveyTitle, options: surveyDataList});
-// });
 
 app.get('/api/survey-data', db.getSurveys);
 
-app.post('/api/survey-data', (request, response) => {
-  const surveyData = request.body.surveyData;
-  surveyTitle = surveyData.surveyTitle
-  surveyDataList = surveyData.options;
-  console.log('Adding survey: ', surveyData);
-  response.json("surveyData added");
-  // negative case?
-});
+app.post('/api/survey-data', db.createSurvey);
+
 
 app.post('/api/participant-data', (request, response) => {
   const participantData = request.body.participantData;
