@@ -1,4 +1,5 @@
 const restrictedData = require('./restrictedData');
+const { v4: uuidv4 } = require('uuid');
 
 const Pool = require('pg').Pool
 const pool = new Pool({
@@ -28,21 +29,25 @@ const getParticipantData = (request, response) => {
 }
 
 const createSurvey = (request, response) => {
-  const { surveyTitle, options } = request.body.surveyData;
-  // todo validation explizit .string machen
-  const surveyLink = "5721cddd-eee4-4a26-b547-ff4767353e8a"
-  // uuid generator
+  const surveyTitle = request.body.surveyData.surveyTitle;
+  const options = JSON.stringify(request.body.surveyData.options); 
+  const surveyLink = uuidv4()
   pool.query(
-  	'INSERT INTO surveys (survey_name, options, survey_link) VALUES ($1, $2, $3) RETURNING *', 
+  	'INSERT INTO surveys (survey_name, options, survey_link) VALUES ($1, $2, $3) RETURNING survey_id, survey_link, survey_name, options', 
   	[surveyTitle, options, surveyLink], (error, results) => {
     if (error) {
       throw error
     }
-    console.log(results.rows)
-    response.status(201).send(results.rows[0])
+    // map data from database
+    const surveyData = {
+		  survey_id: results.rows[0].survey_id,
+		  survey_link: results.rows[0].survey_link,
+		  survey_name: results.rows[0].survey_name,
+		  options: JSON.parse(results.rows[0].options)
+		}
+    response.status(201).send(surveyData)
+    console.log('Adding survey: ', surveyData);
   })
-	console.log('Adding survey: ', surveyTitle, options);
-	// todo statt * alle variablen explizit machen, daraus ein javascript object machen und felder einzeln mappen
 }
 
 const createParticipantData = (request, response) => {
