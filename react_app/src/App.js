@@ -15,9 +15,10 @@ class App extends Component {
 			showCreateSurvey: false,
 			showSurvey: false,
 			showResults: false,
-			surveyTitle: "Survey123",
+			surveyTitle: "",
+			surveyId: 0,
 			surveyData: {},
-			participantData: {}
+			participantData: []
 		};
 		this.showCreateSurvey = this.showCreateSurvey.bind(this);
 		this.createSurvey = this.createSurvey.bind(this);
@@ -31,27 +32,31 @@ class App extends Component {
 	createSurvey(surveyData) {
     api.createSurvey(surveyData)
     .then(response => {
+    	console.log(response, "response")
     	this.setState({
     		surveyData: {options: response.options}, 
     		surveyTitle: response.survey_name, 
+    		surveyId: response.survey_id,
     		showCreateSurvey: false, 
-    		showSurvey: true })
+    		showSurvey: true 
+    	})
+  	  console.log("inside create survey",this.state.surveyId)
     });
 	}	
 
 	createParticipantData(participantData) {
-    api.createParticipantData(participantData)
+		console.log("inside participant", this.state.surveyId)
+
+    api.createParticipantData(participantData, this.state.surveyId)
     .then(response => {
-      console.log(response);
-    });
-    api.getParticipantData()
-    .then(participantData => {
-			this.setState({
-				participantData: participantData, 
+      console.log(response, "response");
+      this.setState({
+				participantData: [response], 
 				showSurvey: false, 
 				showResults: true
 			})
     });
+
 	}
 
   componentDidMount(){

@@ -40,8 +40,8 @@ class Survey extends Component {
 				            <Grid.Column>
 			                <label htmlFor="name">Name</label>
 					    				<Field 
-					              id="name" 
-					              name="name" 
+					              id="participantName" 
+					              name="participantName" 
 					              placeholder="name"
 					            />
 				            </Grid.Column>

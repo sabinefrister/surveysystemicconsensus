@@ -17,11 +17,11 @@ async function createSurvey(data) {
   return await response.json();
 }
 
-async function createParticipantData(data) {
+async function createParticipantData(data, id) {
   const response = await fetch(`/api/participant-data`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({participantData: data})
+      body: JSON.stringify({participantData: data, surveyId: id})
     })
   return await response.json();
 }

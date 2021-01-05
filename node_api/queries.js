@@ -50,14 +50,27 @@ const createSurvey = (request, response) => {
   })
 }
 
-const createParticipantData = (request, response) => {
-  const { name, email } = request.body
+const createParticipant = (request, response) => {
+  const participantName = request.body.participantData.participantName;
+  const options = JSON.stringify(request.body.participantData.options); 
+  const surveyId = request.body.surveyId;
 
-  pool.query('INSERT INTO users (name, email) VALUES ($1, $2)', [name, email], (error, results) => {
+  console.log("inside createParticipant Server")
+	console.log(participantName, options, surveyId)
+  pool.query('INSERT INTO participants (participant_name, options, survey_id) VALUES ($1, $2, $3) RETURNING participant_name, options', [participantName, options, surveyId], (error, results) => {
     if (error) {
       throw error
     }
-    response.status(201).send(`User added with ID: ${result.insertId}`)
+
+    console.log(results.rows)
+    // hier sollten eigentlich alle Daten von den Teilnehmern enthalten sein, damit ich sie darstellen kann...
+    // map data from database
+    const participantData = {
+    	name: results.rows[0].participant_name,
+    	options: JSON.parse(results.rows[0].options)
+    }
+    response.status(201).send(participantData)
+    console.log('Adding participant data: ', participantData);
   })
 }
 
@@ -65,5 +78,5 @@ module.exports = {
   getSurveys,
   getParticipantData,
   createSurvey,
-  createParticipantData
+  createParticipant
 }

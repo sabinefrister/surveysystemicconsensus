@@ -5,12 +5,8 @@ const app = express(),
       bodyParser = require("body-parser");
       port = 3080;
 
-// place holder for the data
-let surveyDataList;
-let surveyTitle = "";
-const participantDataList = [];
-
 app.use(bodyParser.json());
+let participantDataList = [];
 
 app.get('/', (request, response) => {
   response.json("server is available");
@@ -21,19 +17,11 @@ app.get('/api/participant-data', (request, response) => {
   response.json(participantDataList);
 });
 
-
 app.get('/api/survey-data', db.getSurveys);
 
 app.post('/api/survey-data', db.createSurvey);
 
-
-app.post('/api/participant-data', (request, response) => {
-  const participantData = request.body.participantData;
-  participantDataList.push(participantData);
-  console.log('Adding participant data: ', participantData);
-  response.json("participant data added");
-  // negative case?
-});
+app.post('/api/participant-data', db.createParticipant);
 
 app.listen(port, () => {
     console.log(`Server listening on the port::${port}`);
