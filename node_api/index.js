@@ -6,16 +6,6 @@ const app = express(),
       port = 3080;
 
 app.use(bodyParser.json());
-let participantDataList = [];
-
-app.get('/', (request, response) => {
-  response.json("server is available");
-});
-
-app.get('/api/participant-data', (request, response) => {
-  console.log('api/participants called!')
-  response.json(participantDataList);
-});
 
 app.get('/api/survey-data', db.getSurveys);
 

@@ -19,21 +19,13 @@ const getSurveys = (request, response) => {
   })
 }
 
-const getParticipantData = (request, response) => {
-  pool.query('SELECT * FROM surveys', (error, results) => {
-    if (error) {
-      throw error
-    }
-    response.status(200).json(results.rows)
-  })
-}
-
 const createSurvey = (request, response) => {
   const surveyTitle = request.body.surveyData.surveyTitle;
   const options = JSON.stringify(request.body.surveyData.options); 
   const surveyLink = uuidv4()
   pool.query(
-  	'INSERT INTO surveys (survey_name, options, survey_link) VALUES ($1, $2, $3) RETURNING survey_id, survey_link, survey_name, options', 
+  	'INSERT INTO surveys (survey_name, options, survey_link) VALUES ($1, $2, $3) ' + 
+  	'RETURNING survey_id, survey_link, survey_name, options', 
   	[surveyTitle, options, surveyLink], (error, results) => {
     if (error) {
       throw error
@@ -55,28 +47,39 @@ const createParticipant = (request, response) => {
   const options = JSON.stringify(request.body.participantData.options); 
   const surveyId = request.body.surveyId;
 
-  console.log("inside createParticipant Server")
-	console.log(participantName, options, surveyId)
-  pool.query('INSERT INTO participants (participant_name, options, survey_id) VALUES ($1, $2, $3) RETURNING participant_name, options', [participantName, options, surveyId], (error, results) => {
+  pool.query('INSERT INTO participants (participant_name, options, survey_id) VALUES ($1, $2, $3)', 
+  	[participantName, options, surveyId], (error, results) => {
     if (error) {
       throw error
     }
+    pool.query('SELECT participant_name, options FROM participants WHERE survey_id = ($1)', 
+    	[surveyId], (error, results) => {
+	    if (error) {
+	      throw error
+	    }
+	 
+	    let participantData = [];
 
-    console.log(results.rows)
-    // hier sollten eigentlich alle Daten von den Teilnehmern enthalten sein, damit ich sie darstellen kann...
-    // map data from database
-    const participantData = {
-    	name: results.rows[0].participant_name,
-    	options: JSON.parse(results.rows[0].options)
-    }
-    response.status(201).send(participantData)
-    console.log('Adding participant data: ', participantData);
+	    results.rows.map((data, index) => {
+	    	let options = []
+	    	let optionsFromDatabase = JSON.parse(data.options)
+	    	optionsFromDatabase.map((option, index) => {
+	    		options.push(option)
+	    	})
+	    	participantData.push({
+	    		name: data.participant_name,
+	      	options: options
+	    	})
+	    })
+
+	    response.status(201).send(participantData)
+	    console.log('Adding participant data: ', participantData)
+	  })
   })
 }
 
 module.exports = {
   getSurveys,
-  getParticipantData,
   createSurvey,
   createParticipant
 }

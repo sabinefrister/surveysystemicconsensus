@@ -23,6 +23,7 @@ class App extends Component {
 		this.showCreateSurvey = this.showCreateSurvey.bind(this);
 		this.createSurvey = this.createSurvey.bind(this);
 		this.createParticipantData = this.createParticipantData.bind(this);
+		this.createNewParticipant = this.createNewParticipant.bind(this);
 	}
 
 	showCreateSurvey() {
@@ -32,7 +33,6 @@ class App extends Component {
 	createSurvey(surveyData) {
     api.createSurvey(surveyData)
     .then(response => {
-    	console.log(response, "response")
     	this.setState({
     		surveyData: {options: response.options}, 
     		surveyTitle: response.survey_name, 
@@ -40,25 +40,23 @@ class App extends Component {
     		showCreateSurvey: false, 
     		showSurvey: true 
     	})
-  	  console.log("inside create survey",this.state.surveyId)
     });
 	}	
 
 	createParticipantData(participantData) {
-		console.log("inside participant", this.state.surveyId)
-
     api.createParticipantData(participantData, this.state.surveyId)
     .then(response => {
-      console.log(response, "response");
       this.setState({
-				participantData: [response], 
+				participantData: response, 
 				showSurvey: false, 
 				showResults: true
 			})
     });
-
 	}
 
+	createNewParticipant() {
+		this.setState({ showSurvey: true, showResults: false,})
+	}
   componentDidMount(){
     document.title = "Survey Systemic Consensus"
   }
@@ -81,11 +79,14 @@ class App extends Component {
 		      		createParticipantData={this.createParticipantData} 
 	      		/>}
 		      {this.state.showResults && 
-		      	<Results 
-		      		participantData={this.state.participantData} 
-		      		surveyData={this.state.surveyData}
-		      		surveyTitle={this.state.surveyTitle}
-	      		/>
+		      	<React.Fragment>
+			      	<Results 
+			      		participantData={this.state.participantData} 
+			      		surveyData={this.state.surveyData}
+			      		surveyTitle={this.state.surveyTitle}
+		      		/>
+		      		<Button onClick={this.createNewParticipant}>New Participant</Button>
+	      		</React.Fragment>
 	      	}
 		    </Segment>
 	    </Grid>
