@@ -48,7 +48,7 @@ class App extends Component {
     .then(response => {
       this.setState({
 				participantData: response.participantData,
-				resultsFromData: response.resultsFromData, 
+				results: response.resultsFromSurvey, 
 				showSurvey: false, 
 				showResults: true
 			})
@@ -83,6 +83,7 @@ class App extends Component {
 		      	<React.Fragment>
 			      	<Results 
 			      		participantData={this.state.participantData} 
+			      		results={this.state.results}
 			      		surveyData={this.state.surveyData}
 			      		surveyTitle={this.state.surveyTitle}
 		      		/>

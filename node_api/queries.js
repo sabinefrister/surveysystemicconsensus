@@ -76,20 +76,18 @@ const createParticipant = (request, response) => {
     	let resultsFromSurvey = []
     	// create list structure beforehand to easily push values
     	for (var i = 0; i < participantData[0].options.length; i++) {
-    		resultsFromSurvey.push({name: `option${i}`, values: []})
+    		resultsFromSurvey.push({name: `option${i}`, values: [], sum: 0})
     	}
     	participantData.map((participant, index) => {
     		participant.options.map((option, index) => {
     			resultsFromSurvey[index].values.push(option.option)
+    			resultsFromSurvey[index].sum += option.option
     		})
     	})
     	// Todo check as test
     	console.log(participantData.length, resultsFromSurvey[0].values.length)
 
-    	
-
 	    response.status(201).send({participantData, resultsFromSurvey})
-	    console.log(participantData)
 	    console.log('Adding participant data')
 	  })
   })

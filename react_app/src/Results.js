@@ -29,8 +29,8 @@ class Results extends Component {
 			    	))}
 			    	<Table.Row>	
 				        <Table.Cell>Results</Table.Cell>
-				    		{[1,2].map((result, index) => (
-				        <Table.Cell>{result}</Table.Cell>
+				    		{this.props.results.map((option, index) => (
+				        <Table.Cell>{option.sum}</Table.Cell>
 				        ))}
 			      </Table.Row>
 		    	</Table.Body>
@@ -45,6 +45,7 @@ export default Results;
 
 Results.propTypes = {
 	participantData: PropTypes.array,
+	results: PropTypes.object,
 	surveyData: PropTypes.object,
 	surveyTitle: PropTypes.string,
 };
