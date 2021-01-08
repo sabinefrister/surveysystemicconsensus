@@ -49,6 +49,7 @@ class App extends Component {
       this.setState({
 				participantData: response.participantData,
 				results: response.resultsFromSurvey, 
+				winningOption: response.winningOption,
 				showSurvey: false, 
 				showResults: true
 			})
@@ -84,6 +85,7 @@ class App extends Component {
 			      	<Results 
 			      		participantData={this.state.participantData} 
 			      		results={this.state.results}
+			      		winningOption={this.state.winningOption}
 			      		surveyData={this.state.surveyData}
 			      		surveyTitle={this.state.surveyTitle}
 		      		/>

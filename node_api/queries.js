@@ -76,7 +76,7 @@ const createParticipant = (request, response) => {
     	let resultsFromSurvey = []
     	// create list structure beforehand to easily push values
     	for (var i = 0; i < participantData[0].options.length; i++) {
-    		resultsFromSurvey.push({name: `option${i}`, values: [], sum: 0})
+    		resultsFromSurvey.push({name: `option${i}`, values: [], sum: 0, winner: false})
     	}
     	participantData.map((participant, index) => {
     		participant.options.map((option, index) => {
@@ -84,10 +84,20 @@ const createParticipant = (request, response) => {
     			resultsFromSurvey[index].sum += option.option
     		})
     	})
+
+  		// choose winning option
+  		let winningOption = {index: 0, sum: Number.MAX_SAFE_INTEGER}
+  		resultsFromSurvey.map((option, index) => {
+  			if (option.sum < winningOption.sum) {
+  				winningOption.index = index;
+  				winningOption.sum = option.sum
+  			}
+  		})
+
     	// Todo check as test
     	console.log(participantData.length, resultsFromSurvey[0].values.length)
 
-	    response.status(201).send({participantData, resultsFromSurvey})
+	    response.status(201).send({participantData, resultsFromSurvey, winningOption})
 	    console.log('Adding participant data')
 	  })
   })

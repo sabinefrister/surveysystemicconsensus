@@ -10,6 +10,15 @@ class Results extends Component {
 				<Header as='h2'>Results of the Survey</Header>
 				<Header as='h3'>{this.props.surveyTitle}</Header>
 				<Table basic='very' celled collapsing>
+					<colgroup>
+						{this.props.surveyData.options.map((data, index) => {
+							if (index === this.props.winningOption.index + 1) {
+								return <col className="winner" />
+							} else {
+								return <col className="" />
+							}
+						})}
+					</colgroup>
 			    <Table.Header>
 			      <Table.Row>
 			      	<Table.HeaderCell>Name</Table.HeaderCell>
@@ -46,6 +55,7 @@ export default Results;
 Results.propTypes = {
 	participantData: PropTypes.array,
 	results: PropTypes.object,
+	winningOption: PropTypes.object,
 	surveyData: PropTypes.object,
 	surveyTitle: PropTypes.string,
 };
