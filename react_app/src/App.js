@@ -47,7 +47,8 @@ class App extends Component {
     api.createParticipantData(participantData, this.state.surveyId)
     .then(response => {
       this.setState({
-				participantData: response, 
+				participantData: response.participantData,
+				resultsFromData: response.resultsFromData, 
 				showSurvey: false, 
 				showResults: true
 			})

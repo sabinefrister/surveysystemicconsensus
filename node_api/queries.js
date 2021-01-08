@@ -57,32 +57,40 @@ const createParticipant = (request, response) => {
 	    if (error) {
 	      throw error
 	    }
-	 
-	    let participantData = [];
-	    let resultsFromOptions = [{option1: []}, {option2: [], option3: []}, {option4: []}]
-	    // [{option1: [1,4,6,2,7,2]}, {option2: [3,4,2,3,5,2}]
 
-			// gleichzeitig n Listen erstellen für die Ergebnisse der einzelnen optionen
-			// -> array.length -> dann resultsOptionN... und dann hinzufügen, am Ende kann man das dann berechnen, 
-			// bzw. in eine gemeinsame Liste reinschreiben,
+	    // map data from database
+	    let participantData = [];
 	    results.rows.map((data, index) => {
 	    	let options = []
 	    	let optionsFromDatabase = JSON.parse(data.options)
 	    	optionsFromDatabase.map((option, index) => {
 	    		options.push(option)
-	    		// hier entweder das object erstellen mit option N und dann dahin pushen oder vorher schon 
-	    		// über length der options entsprechende objecte in der liste erstellen und dann hineingeben
-	    		// resultsFromOptions.option.push(option)
-	    		console.log(resultsFromOptions)
 	    	})
 	    	participantData.push({
 	    		name: data.participant_name,
 	      	options: options
 	    	})
 	    })
-	    console.log(resultsFromOptions)
-	    response.status(201).send(participantData)
-	    console.log('Adding participant data: ', participantData)
+
+    	// create a list for calculation the results of the survey
+    	let resultsFromSurvey = []
+    	// create list structure beforehand to easily push values
+    	for (var i = 0; i < participantData[0].options.length; i++) {
+    		resultsFromSurvey.push({name: `option${i}`, values: []})
+    	}
+    	participantData.map((participant, index) => {
+    		participant.options.map((option, index) => {
+    			resultsFromSurvey[index].values.push(option.option)
+    		})
+    	})
+    	// Todo check as test
+    	console.log(participantData.length, resultsFromSurvey[0].values.length)
+
+    	
+
+	    response.status(201).send({participantData, resultsFromSurvey})
+	    console.log(participantData)
+	    console.log('Adding participant data')
 	  })
   })
 }
