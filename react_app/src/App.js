@@ -66,22 +66,30 @@ class App extends Component {
   render() {
   	return (
   		<Grid centered>
-				<Segment basic>
-		      <Header as='h1'>Survey Systemic Consensus</Header>
+					<Grid.Row>
+		      	<Header as='h1'>Survey Systemic Consensus</Header>
+		      </Grid.Row>
 		      {this.state.showLanding && 
-						<Button onClick={this.showCreateSurvey}>Start your survey</Button>
+		      	<Grid.Row>
+							<Button onClick={this.showCreateSurvey}>Start your survey</Button>
+						</Grid.Row>
 					}
 		      {this.state.showCreateSurvey && 
-		      	<CreateSurvey createSurvey={this.createSurvey} />
+		      	<Grid.Row>
+		      		<CreateSurvey createSurvey={this.createSurvey} />
+		      	</Grid.Row>
 		      }
 		      {this.state.showSurvey && 
-		      	<Survey 
-		      		surveyData={this.state.surveyData}
-		      		surveyTitle={this.state.surveyTitle}
-		      		createParticipantData={this.createParticipantData} 
-	      		/>}
+		      	<Grid.Row>
+			      	<Survey 
+			      		surveyData={this.state.surveyData}
+			      		surveyTitle={this.state.surveyTitle}
+			      		createParticipantData={this.createParticipantData} 
+		      		/>
+		      	</Grid.Row>	
+	      	}
 		      {this.state.showResults && 
-		      	<React.Fragment>
+		      	<Grid.Row>
 			      	<Results 
 			      		participantData={this.state.participantData} 
 			      		results={this.state.results}
@@ -90,9 +98,8 @@ class App extends Component {
 			      		surveyTitle={this.state.surveyTitle}
 		      		/>
 		      		<Button onClick={this.createNewParticipant}>New Participant</Button>
-	      		</React.Fragment>
+	      		</Grid.Row>
 	      	}
-		    </Segment>
 	    </Grid>
   	)
   }
