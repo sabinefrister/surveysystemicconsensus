@@ -66,9 +66,10 @@ class App extends Component {
   render() {
   	return (
   		<Grid centered>
-					<Grid.Row>
-		      	<Header as='h1'>Survey Systemic Consensus</Header>
-		      </Grid.Row>
+				<Grid.Row>
+	      	<Header as='h1'>Survey Systemic Consensus</Header>
+	      </Grid.Row>
+	      <Segment padded='very' inverted color='teal' raised>
 		      {this.state.showLanding && 
 		      	<Grid.Row>
 							<Button onClick={this.showCreateSurvey}>Start your survey</Button>
@@ -100,6 +101,7 @@ class App extends Component {
 		      		<Button onClick={this.createNewParticipant}>New Participant</Button>
 	      		</Grid.Row>
 	      	}
+      	</Segment>
 	    </Grid>
   	)
   }
