@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import { Formik, Field, Form, ErrorMessage, FieldArray } from 'formik';
-import { Container, Segment, Icon, Button, Header, Input, Grid, Label } from 'semantic-ui-react'
-import { Form as UIForm } from 'semantic-ui-react'
+import { Container, Icon, Button, Header, Input, Grid } from 'semantic-ui-react'
 
 
 const initialValues = {
@@ -31,17 +30,18 @@ const CreateSurvey = (props) => (
                 <Grid>
                   <Grid.Row columns={3}>
                     <Grid.Column width={4}>
-                      <label className="form-label" htmlFor="surveyTitle">Survey Title</label>
+                      <label htmlFor="surveyTitle">Survey Title</label>
                     </Grid.Column>
-                    <Grid.Column width={11}>
+                    <Grid.Column width={10}>
                     	<Field fluid
+                        required
                         id="surveyTitle" 
                         as={Input}
                         name="surveyTitle" 
                         placeholder="surveyTitle"
                       /> 
                     </Grid.Column>
-                    <Grid.Column width={1}>
+                    <Grid.Column width={2}>
                     </Grid.Column>
                   </Grid.Row>
                   {values.options.length > 0 &&
@@ -50,12 +50,12 @@ const CreateSurvey = (props) => (
                       <Grid.Row columns={3}>
                         <Grid.Column width={4}>
                           <label 
-                            className="form-label" 
                             htmlFor={`options.${index}.option`}>Option {+(index+1)}
                           </label>
                         </Grid.Column>
-                        <Grid.Column width={11} >
+                        <Grid.Column width={10} >
                           <Field fluid
+                            required
                             name={`options.${index}.option`}
                             as={Input}
                             placeholder="Your Option"
@@ -67,42 +67,43 @@ const CreateSurvey = (props) => (
                             className="field-error"
                           />
                         </Grid.Column>
-                        <Grid.Column width={1}>
+                        <Grid.Column width={2}>
                           <Button icon size="large"
                             type="button"
                             onClick={() => remove(index)}
                           >
-                            <Icon name="close" />
+                            <Icon name="trash alternate" />
                           </Button>
                         </Grid.Column>
                       </Grid.Row>
                     </React.Fragment>
                   ))} 
                   <Grid.Row>
-                        <Grid.Column width={4}>
-                        </Grid.Column>
-                        <Grid.Column width={5}>
-                          <Button 
-                            size="large"
-                            type="submit"
-                          >
-                            Create your survey
-                          </Button>
-                        </Grid.Column>
-                        <Grid.Column width={6} className="icon-button">
-                          <Button
-                            icon labelPosition='left'
-                            size="large"
-                            type="button"
-                            onClick={() => push({ option: ''})}
-                          >
-                            <Icon name="plus" /> 
-                            Add another option
-                          </Button>
-                        </Grid.Column>
-                        <Grid.Column width={1}>
-                        </Grid.Column>
-                      </Grid.Row>
+                    <Grid.Column width={4}>
+                    </Grid.Column>
+                    <Grid.Column width={5}>
+                      <Button 
+                        size="large"
+                        type="submit"
+                      >
+                        Create your Survey
+                      </Button>
+                    </Grid.Column>
+                    <Grid.Column width={5}>
+                      <Button
+                        className="float-right"
+                        icon labelPosition='left'
+                        size="large"
+                        type="button"
+                        onClick={() => push({ option: ''})}
+                      >
+                        <Icon name="plus" /> 
+                        Add Option
+                      </Button>
+                    </Grid.Column>
+                    <Grid.Column width={1}>
+                    </Grid.Column>
+                  </Grid.Row>
                 </Grid>
               )}
             </FieldArray>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CreateSurvey from './CreateSurvey';
 import Survey from './Survey';
 import Results from './Results';
-import { Grid, Segment, Button, Header } from 'semantic-ui-react'
+import { Segment, Button, Header } from 'semantic-ui-react'
 import api from './apiCall'
 import './App.css';
 
@@ -69,7 +69,24 @@ class App extends Component {
       	<Header as='h1' className="main-header">Survey Systemic Consensus</Header>
 	      <Segment padded='very' className="main-container">
 		      {this.state.showLanding && 
-						<Button size="massive" onClick={this.showCreateSurvey}>Start your survey</Button>
+		      	<React.Fragment>
+							<p>
+								This is a survey with the Systemic Consensus method. This means, all participants 
+								vote his restistance against each option. With every option you can choose from 0 to 10.
+								0 means no resistance. And 10 means absolutly resistant to this option.
+							</p>
+							<p>
+								This method help groups to find a better solution, because less resistance to the 
+								upcoming choice and more harmony inside the group.
+							</p>
+							<Button 
+								size="massive" 
+								className="center-button" 
+								onClick={this.showCreateSurvey}
+							>
+								Start your Survey
+							</Button>
+						</React.Fragment>
 					}
 		      {this.state.showCreateSurvey && 
 	      		<CreateSurvey createSurvey={this.createSurvey} />
@@ -90,7 +107,7 @@ class App extends Component {
 			      		surveyData={this.state.surveyData}
 			      		surveyTitle={this.state.surveyTitle}
 		      		/>
-		      		<Button onClick={this.createNewParticipant}>New Participant</Button>
+		      		<Button size="large" className="center" onClick={this.createNewParticipant}>Add new Participant</Button>
 	      		</React.Fragment>
 	      	}
       	</Segment>

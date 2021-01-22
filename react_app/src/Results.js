@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
-import { Header, Table } from 'semantic-ui-react'
+import { Header, Table, Segment } from 'semantic-ui-react'
 
+const square = { width: 175, height: 175 }
 
 class Results extends Component {
 	render() {
     return (
-			<div>
+ 		 	<React.Fragment>    
 				<Header as='h2'>Results of the Survey</Header>
+		    <div className="circular-winner">
+			    <Segment circular inverted style={square}>
+			      <Header as='h2' inverted>
+			        Winner:
+			        <Header.Subheader>Option 4</Header.Subheader>
+			      </Header>
+			    </Segment>
+		    </div>
+
 				<Header as='h3'>{this.props.surveyTitle}</Header>
-				<Table basic='very' celled collapsing>
+				<Table size="large" celled>
 					<colgroup>
 						{this.props.surveyData.options.map((data, index) => {
 							if (index === this.props.winningOption.index + 1) {
@@ -44,7 +54,7 @@ class Results extends Component {
 			      </Table.Row>
 		    	</Table.Body>
     		</Table>
-			</div>
+			</React.Fragment>
     );
   }
 }
@@ -54,7 +64,7 @@ export default Results;
 
 Results.propTypes = {
 	participantData: PropTypes.array,
-	results: PropTypes.object,
+	results: PropTypes.array,
 	winningOption: PropTypes.object,
 	surveyData: PropTypes.object,
 	surveyTitle: PropTypes.string,
