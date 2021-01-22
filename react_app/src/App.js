@@ -65,32 +65,24 @@ class App extends Component {
 
   render() {
   	return (
-  		<Grid centered>
-				<Grid.Row>
-	      	<Header as='h1'>Survey Systemic Consensus</Header>
-	      </Grid.Row>
-	      <Segment padded='very' inverted color='teal' raised>
+			<div className="container">
+      	<Header as='h1' className="main-header">Survey Systemic Consensus</Header>
+	      <Segment padded='very' className="main-container">
 		      {this.state.showLanding && 
-		      	<Grid.Row>
-							<Button onClick={this.showCreateSurvey}>Start your survey</Button>
-						</Grid.Row>
+						<Button size="massive" onClick={this.showCreateSurvey}>Start your survey</Button>
 					}
 		      {this.state.showCreateSurvey && 
-		      	<Grid.Row>
-		      		<CreateSurvey createSurvey={this.createSurvey} />
-		      	</Grid.Row>
+	      		<CreateSurvey createSurvey={this.createSurvey} />
 		      }
 		      {this.state.showSurvey && 
-		      	<Grid.Row>
-			      	<Survey 
-			      		surveyData={this.state.surveyData}
-			      		surveyTitle={this.state.surveyTitle}
-			      		createParticipantData={this.createParticipantData} 
-		      		/>
-		      	</Grid.Row>	
+		      	<Survey 
+		      		surveyData={this.state.surveyData}
+		      		surveyTitle={this.state.surveyTitle}
+		      		createParticipantData={this.createParticipantData} 
+	      		/>
 	      	}
 		      {this.state.showResults && 
-		      	<Grid.Row>
+		      	<React.Fragment>
 			      	<Results 
 			      		participantData={this.state.participantData} 
 			      		results={this.state.results}
@@ -99,10 +91,10 @@ class App extends Component {
 			      		surveyTitle={this.state.surveyTitle}
 		      		/>
 		      		<Button onClick={this.createNewParticipant}>New Participant</Button>
-	      		</Grid.Row>
+	      		</React.Fragment>
 	      	}
       	</Segment>
-	    </Grid>
+    	</div>
   	)
   }
 };

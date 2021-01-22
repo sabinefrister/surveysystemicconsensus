@@ -1,5 +1,20 @@
-.App {
-  text-align: center;
+.container:first-child {
+	padding-top: 50px;
+  	background-color: grey;
+  	height: 100vh;
+}
+
+h1 {
+	text-align: center;
+}
+
+.ui.segment.main-container {
+	margin: 0 auto;
+	height: 80vh;
+	width: 80vw;
+	background-color: #FFFFFF;
+	border: 1px solid #000000;
+	box-shadow: 0 16px 28px 0 rgba(0,0,0,.22);
 }
 
 .winner {
@@ -8,4 +23,13 @@
 
 #create-button {
 	margin-top: 40px;
+}
+
+#survey-title {
+	positon: absolute;
+	right: 0px;
+}
+
+label.form-label {
+	text-align: left !important;
 }
