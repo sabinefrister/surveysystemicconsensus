@@ -8,7 +8,16 @@ h1, h2, h3 {
 	text-align: center;
 }
 
+h1, h2 {
+	padding-bottom: 2rem !important;
+}
+
+.ui {
+   font-family: 'Quicksand', sans-serif !important;
+}
+
 .ui p {  
+	font-size: 1.3rem;
 	margin: 0 12%;
   	margin-bottom: 15px;
 }
@@ -26,9 +35,15 @@ h1, h2, h3 {
 	background-color: blue;
 }
 
-.circular-winner {
+div .circular-winner {
 	display: flex;
 	justify-content: center;
+}
+
+div#circular-winner:first-child {
+	padding-top: 5rem;
+	background-color: orange;
+	border: none;
 }
 
 #create-button {

@@ -82,14 +82,6 @@ const CreateSurvey = (props) => (
                     <Grid.Column width={4}>
                     </Grid.Column>
                     <Grid.Column width={5}>
-                      <Button 
-                        size="large"
-                        type="submit"
-                      >
-                        Create your Survey
-                      </Button>
-                    </Grid.Column>
-                    <Grid.Column width={5}>
                       <Button
                         className="float-right"
                         icon labelPosition='left'
@@ -98,7 +90,15 @@ const CreateSurvey = (props) => (
                         onClick={() => push({ option: ''})}
                       >
                         <Icon name="plus" /> 
-                        Add Option
+                        Add another Option
+                      </Button>
+                    </Grid.Column>
+                    <Grid.Column width={5}>
+                      <Button 
+                        size="large"
+                        type="submit"
+                      >
+                        Create your Survey
                       </Button>
                     </Grid.Column>
                     <Grid.Column width={1}>

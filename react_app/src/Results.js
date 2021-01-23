@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { Header, Table, Segment } from 'semantic-ui-react'
 
-const square = { width: 175, height: 175 }
+const square = { width: 200, height: 200 }
 
 class Results extends Component {
 	render() {
@@ -10,7 +10,7 @@ class Results extends Component {
  		 	<React.Fragment>    
 				<Header as='h2'>Results of the Survey</Header>
 		    <div className="circular-winner">
-			    <Segment circular inverted style={square}>
+			    <Segment circular id="circular-winner" style={square}>
 			      <Header as='h2' inverted>
 			        Winner:
 			        <Header.Subheader>Option 4</Header.Subheader>
@@ -46,13 +46,15 @@ class Results extends Component {
 				        ))}
 				      </Table.Row>
 			    	))}
-			    	<Table.Row>	
-				        <Table.Cell>Results</Table.Cell>
-				    		{this.props.results.map((option, index) => (
-				        <Table.Cell>{option.sum}</Table.Cell>
-				        ))}
-			      </Table.Row>
 		    	</Table.Body>
+		    	<Table.Footer>
+		    		<Table.Row>	
+			        <Table.HeaderCell>Results</Table.HeaderCell>
+			    		{this.props.results.map((option, index) => (
+			        <Table.HeaderCell>{option.sum}</Table.HeaderCell>
+			        ))}
+			      </Table.Row>
+		    	</Table.Footer>
     		</Table>
 			</React.Fragment>
     );
