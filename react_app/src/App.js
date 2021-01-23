@@ -4,7 +4,7 @@ import Survey from './Survey';
 import Results from './Results';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPoll } from '@fortawesome/free-solid-svg-icons'
-import { Segment, Button, Header, Menu, Icon } from 'semantic-ui-react'
+import { Segment, Button, Menu } from 'semantic-ui-react'
 import api from './apiCall'
 import './App.css';
 

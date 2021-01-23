@@ -6,6 +6,8 @@ const square = { width: 200, height: 200 }
 
 class Results extends Component {
 	render() {
+		let winningOptionIndex = this.props.winningOption.index
+		console.log()
     return (
  		 	<React.Fragment>    
 				<Header as='h2'>Results of the Survey</Header>
@@ -13,7 +15,9 @@ class Results extends Component {
 			    <Segment circular id="circular-winner" style={square}>
 			      <Header as='h2' inverted>
 			        Winner:
-			        <Header.Subheader>Option 4</Header.Subheader>
+			        <Header.Subheader>
+			        	Option {winningOptionIndex+1}: {this.props.surveyData.options[winningOptionIndex].option}
+		        	</Header.Subheader>
 			      </Header>
 			    </Segment>
 		    </div>
@@ -21,8 +25,9 @@ class Results extends Component {
 				<Header as='h3'>{this.props.surveyTitle}</Header>
 				<Table size="large" celled>
 					<colgroup>
+						<col className="" />
 						{this.props.surveyData.options.map((data, index) => {
-							if (index === this.props.winningOption.index + 1) {
+							if (index === this.props.winningOption.index) {
 								return <col className="winner" />
 							} else {
 								return <col className="" />
