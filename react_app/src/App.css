@@ -1,6 +1,8 @@
+body {
+	background-color: grey !important;
+}
+
 .container:first-child {
-	padding-top: 50px;
-  	background-color: grey;
   	min-height: 100vh;
 }
 
@@ -12,18 +14,26 @@ h1, h2 {
 	padding-bottom: 2rem !important;
 }
 
+.icon-header {
+	font-size: 2rem;
+}
+
+.nav-header {
+	font-size: 2rem;
+}
+
 .ui {
    font-family: 'Quicksand', sans-serif !important;
 }
 
 .ui p {  
 	font-size: 1.3rem;
-	margin: 0 12%;
+	margin: 0 6%;
   	margin-bottom: 15px;
 }
 
 .ui.segment.main-container {
-	margin: 0 auto;
+	margin: 4rem auto !important;
 	min-height: 40vh;
 	width: 80vw;
 	background-color: #FFFFFF;

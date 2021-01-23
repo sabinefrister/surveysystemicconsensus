@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import CreateSurvey from './CreateSurvey';
 import Survey from './Survey';
 import Results from './Results';
-import { Segment, Button, Header } from 'semantic-ui-react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPoll } from '@fortawesome/free-solid-svg-icons'
+import { Segment, Button, Header, Menu, Icon } from 'semantic-ui-react'
 import api from './apiCall'
 import './App.css';
 
@@ -66,7 +68,12 @@ class App extends Component {
   render() {
   	return (
 			<div className="container">
-      	<Header as='h1' className="main-header">Survey Systemic Consensus</Header>
+				<Menu pointing secondary>
+					<Menu.Item className="icon-header">
+						<FontAwesomeIcon icon={faPoll} />	
+					</Menu.Item>
+					<Menu.Item className="nav-header">Survey Systemic Consensus</Menu.Item>
+				</Menu>
 	      <Segment padded='very' className="main-container">
 		      {this.state.showLanding && 
 		      	<React.Fragment>
