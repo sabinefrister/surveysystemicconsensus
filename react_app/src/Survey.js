@@ -15,11 +15,6 @@ const initialValues = {
 
 
 class Survey extends Component {
-	constructor(props) {
-    super(props);
-		this.state = {};
-	}
-
 	render() {
 		let data = this.props.surveyData
     return (
@@ -52,13 +47,19 @@ class Survey extends Component {
 			            </Grid.Row> 
 			            {data.options.length > 0 &&
 		            		data.options.map((option, index) => (
-			            <Grid.Row columns={2}>
-				            <Grid.Column width={4}>
-					            <label htmlFor={`options.${index}.option`}>{option.option}</label>
+			            <Grid.Row columns={2} key={`row-${index}`}>
+				            <Grid.Column width={4} key={`column1-${index}`}>
+					            <label 
+					            	key={`label-${index}`} 
+					            	htmlFor={`options.${index}.option`}
+				            	>
+				            		{option.option}
+			            		</label>
 	                  </Grid.Column>
-		                <Grid.Column width={12}>
+		                <Grid.Column width={12} key={`column2-${index}`}>
 		                  <Field fluid
 		                  	required
+		                  	key={`input-${index}`}
 		                  	min="0"
 		                  	max="10"
 		                  	as={Input}
@@ -67,6 +68,7 @@ class Survey extends Component {
 		                    type="number"
 		                  />
 		                  <ErrorMessage
+		                  key={`error-${index}`}
 		                  name={`options.${index}.option`}
 		                  component="div"
 		                  className="field-error"
@@ -76,7 +78,9 @@ class Survey extends Component {
 			            ))}
 	            		<Grid.Row>
 				            <Grid.Column>
-				        			<Button size="large" className="float-right" type="submit">Submit your choices</Button>
+				        			<Button size="large" className="float-right" type="submit">
+				        				Submit your choices
+			        				</Button>
 				        		</Grid.Column>
 			            </Grid.Row> 
 		        		</Grid>

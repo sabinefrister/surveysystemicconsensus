@@ -79,8 +79,8 @@ class App extends Component {
 		      	<React.Fragment>
 							<p>
 								This is a survey with the Systemic Consensus method. This means, all participants 
-								vote his restistance against each option. With every option you can choose from 0 to 10.
-								0 means no resistance. And 10 means absolutly resistant to this option.
+								vote his restistance against each option. With every option you can choose from 0 to
+								 10. 0 means no resistance. And 10 means absolutly resistant to this option.
 							</p>
 							<p>
 								This method help groups to find a better solution, because less resistance to the 
@@ -114,7 +114,13 @@ class App extends Component {
 			      		surveyData={this.state.surveyData}
 			      		surveyTitle={this.state.surveyTitle}
 		      		/>
-		      		<Button size="large" className="center" onClick={this.createNewParticipant}>Add new Participant</Button>
+		      		<Button 
+		      			size="large" 
+		      			className="center" 
+		      			onClick={this.createNewParticipant}
+	      			>
+		      			Add new Participant
+	      			</Button>
 	      		</React.Fragment>
 	      	}
       	</Segment>

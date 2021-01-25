@@ -16,7 +16,8 @@ class Results extends Component {
 			      <Header as='h2' inverted>
 			        Winner:
 			        <Header.Subheader>
-			        	Option {winningOptionIndex+1}: {this.props.surveyData.options[winningOptionIndex].option}
+			        	Option {winningOptionIndex+1}: 
+			        	{this.props.surveyData.options[winningOptionIndex].option}
 		        	</Header.Subheader>
 			      </Header>
 			    </Segment>
@@ -28,26 +29,26 @@ class Results extends Component {
 						<col id="" />
 						{this.props.surveyData.options.map((data, index) => {
 							if (index === this.props.winningOption.index) {
-								return <col id="winner" className="winner"/>
+								return <col id="winner" className="winner" key={`col-${index}`} />
 							} else {
-								return <col id=""/>
+								return <col id="" key={`col-${index}`} />
 							}
 						})}
 					</colgroup>
 			    <Table.Header>
 			      <Table.Row>
 			      	<Table.Cell>Name</Table.Cell>
-			      	{this.props.surveyData.options.map(option => (
-						    <Table.Cell>{option.option}</Table.Cell>
+			      	{this.props.surveyData.options.map((option, index) => (
+						    <Table.Cell key={`name-${index}`} >{option.option}</Table.Cell>
 							))}
 			      </Table.Row>
 			    </Table.Header>
 			    <Table.Body>
 			    	{this.props.participantData.map((participant, index) => (
-				    	<Table.Row>	
-				        <Table.Cell>{participant.name}</Table.Cell>
+				    	<Table.Row key={`participant-data-row-${index}`} >	
+				        <Table.Cell key={`participant-name-cell-${index}`}>{participant.name}</Table.Cell>
 				    		{participant.options.map((option, index) => (
-				        <Table.Cell>{option.option}</Table.Cell>
+				        <Table.Cell key={`participant-data-cell-${index}`}>{option.option}</Table.Cell>
 				        ))}
 				      </Table.Row>
 			    	))}
@@ -56,7 +57,7 @@ class Results extends Component {
 		    		<Table.Row>	
 			        <Table.Cell>Results</Table.Cell>
 			    		{this.props.results.map((option, index) => (
-			        <Table.Cell>{option.sum}</Table.Cell>
+			        <Table.Cell key={`results-${index}`}>{option.sum}</Table.Cell>
 			        ))}
 			      </Table.Row>
 		    	</Table.Footer>

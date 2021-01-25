@@ -46,33 +46,38 @@ const CreateSurvey = (props) => (
                   </Grid.Row>
                   {values.options.length > 0 &&
                   values.options.map((option, index) => (
-                    <React.Fragment>
-                      <Grid.Row columns={3}>
-                        <Grid.Column width={4}>
+                    <React.Fragment key={`fragment-${index}`}>
+                      <Grid.Row columns={3} key={`row-${index}`}>
+                        <Grid.Column width={4} key={`column1-${index}`}>
                           <label 
+                            key={`label-${index}`}
                             htmlFor={`options.${index}.option`}>Option {+(index+1)}
                           </label>
                         </Grid.Column>
-                        <Grid.Column width={10} >
+                        <Grid.Column width={10} key={`column2-${index}`}>
                           <Field fluid
                             required
+                            key={`input-${index}`}
                             name={`options.${index}.option`}
                             as={Input}
                             placeholder="Your Option"
                             type="text"
                           />
                           <ErrorMessage
+                            key={`error-${index}`}
                             name={`options.${index}.option`}
                             component="div"
                             className="field-error"
                           />
                         </Grid.Column>
-                        <Grid.Column width={2}>
-                          <Button icon size="large"
+                        <Grid.Column width={2} key={`column3-${index}`}>
+                          <Button icon 
+                            key={`button-${index}`}
+                            size="large"
                             type="button"
                             onClick={() => remove(index)}
                           >
-                            <Icon name="trash alternate" />
+                            <Icon name="trash alternate" key={`icon-${index}`}/>
                           </Button>
                         </Grid.Column>
                       </Grid.Row>
