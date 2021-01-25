@@ -7,7 +7,6 @@ const square = { width: 200, height: 200 }
 class Results extends Component {
 	render() {
 		let winningOptionIndex = this.props.winningOption.index
-		console.log()
     return (
  		 	<React.Fragment>    
 				<Header as='h2'>Results of the Survey</Header>
