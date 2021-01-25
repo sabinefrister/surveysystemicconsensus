@@ -22,23 +22,23 @@ class Results extends Component {
 			    </Segment>
 		    </div>
 
-				<Header as='h3'>{this.props.surveyTitle}</Header>
+				<Header as='h2'>Survey: {this.props.surveyTitle}</Header>
 				<Table size="large" celled>
 					<colgroup>
-						<col className="" />
+						<col id="" />
 						{this.props.surveyData.options.map((data, index) => {
 							if (index === this.props.winningOption.index) {
-								return <col className="winner" />
+								return <col id="winner" className="winner"/>
 							} else {
-								return <col className="" />
+								return <col id=""/>
 							}
 						})}
 					</colgroup>
 			    <Table.Header>
 			      <Table.Row>
-			      	<Table.HeaderCell>Name</Table.HeaderCell>
+			      	<Table.Cell>Name</Table.Cell>
 			      	{this.props.surveyData.options.map(option => (
-						    <Table.HeaderCell>{option.option}</Table.HeaderCell>
+						    <Table.Cell>{option.option}</Table.Cell>
 							))}
 			      </Table.Row>
 			    </Table.Header>
@@ -54,9 +54,9 @@ class Results extends Component {
 		    	</Table.Body>
 		    	<Table.Footer>
 		    		<Table.Row>	
-			        <Table.HeaderCell>Results</Table.HeaderCell>
+			        <Table.Cell>Results</Table.Cell>
 			    		{this.props.results.map((option, index) => (
-			        <Table.HeaderCell>{option.sum}</Table.HeaderCell>
+			        <Table.Cell>{option.sum}</Table.Cell>
 			        ))}
 			      </Table.Row>
 		    	</Table.Footer>

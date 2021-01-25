@@ -1,5 +1,5 @@
 body {
-	background-color: grey !important;
+	background-color: #1e2761 !important;
 }
 
 .container:first-child {
@@ -14,16 +14,38 @@ h1, h2 {
 	padding-bottom: 2rem !important;
 }
 
-.icon-header {
-	font-size: 2rem;
+h1.ui.header, h2.ui.header, h3.ui.header {
+	color: #FFFFFF;
 }
 
-.nav-header {
+.ui.menu .item.icon-header {
 	font-size: 2rem;
+	color: #FFFFFF;
+}
+
+.ui.menu .item.nav-header {
+	font-size: 2rem;
+	color: #FFFFFF;
+}
+
+.ui.button, .ui.input {
+	border: 2px solid #7a2048 !important;
+	border-radius: 0.3rem;
+	background-color: #1e2761 !important;
+	color: #FFFFFF !important;
+}
+
+.ui.button:hover {
+	background-color: #7a2048 !important;
+}
+
+.ui.secondary.pointing.menu {
+	border-bottom: 2px solid #7a2048 !important;
 }
 
 .ui {
    font-family: 'Quicksand', sans-serif !important;
+   color: #FFFFFF;
 }
 
 .ui p {  
@@ -36,13 +58,27 @@ h1, h2 {
 	margin: 4rem auto !important;
 	min-height: 40vh;
 	width: 80vw;
-	background-color: #FFFFFF;
-	border: 1px solid #000000;
+	background-color: #1e2761;
+	border: 2px solid #7a2048;
 	box-shadow: 0 16px 28px 0 rgba(0,0,0,.22);
 }
 
-.winner {
-	background-color: blue !important;
+.ui.table {
+	border: 2px solid #7a2048 !important;
+}
+
+.ui.table colgroup #winner, #winner {
+	background-color: #9c2259 !important;
+}
+
+thead td {
+	font-weight: bold;
+	border-bottom: 2px solid #7a2048;
+}
+
+.ui.table tfoot td {
+	font-weight: bold;
+	border-top: 2px solid #7a2048 !important;
 }
 
 div .circular-winner {
@@ -52,8 +88,8 @@ div .circular-winner {
 
 div#circular-winner:first-child {
 	padding-top: 5rem;
-	background-color: orange;
-	border: none;
+	background-color: #7a2048;
+	border: 2px solid #FFFFFF;
 }
 
 #create-button {

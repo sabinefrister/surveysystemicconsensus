@@ -25,7 +25,7 @@ class Survey extends Component {
     return (
     	<React.Fragment>
 				<Header as='h1'>Join this Survey</Header>
-				<Header as='h2'>Surveytitle: "{this.props.surveyTitle}"</Header>
+				<Header as='h2'>Survey: "{this.props.surveyTitle}"</Header>
 				<Formik
 					initialValues={initialValues}
 		      onSubmit={(surveyData) => {
