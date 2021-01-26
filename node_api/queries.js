@@ -95,6 +95,7 @@ const createParticipant = (request, response) => {
   		})
 
     	// Todo check as test
+    	console.log("Test if length and values length is the same")
     	console.log(participantData.length, resultsFromSurvey[0].values.length)
 
 	    response.status(201).send({participantData, resultsFromSurvey, winningOption})
