@@ -3,7 +3,7 @@ const db = require('./queries')
 
 const app = express(),
       bodyParser = require("body-parser");
-      port = 3080;
+      port = 8080;
 
 app.use(bodyParser.json());
 

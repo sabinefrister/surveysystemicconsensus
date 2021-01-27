@@ -16,8 +16,8 @@ let herokuConfig = {
     rejectUnauthorized: false
   }
 }
-
-process.env.DATABASE_URL ? let config = herokuConfig : let config = devConfig
+let config;
+process.env.DATABASE_URL ? config = herokuConfig : config = devConfig
 
 const Pool = require('pg').Pool
 const pool = new Pool(config)

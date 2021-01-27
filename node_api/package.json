@@ -9,8 +9,6 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.bundle.js",
-    "build": "webpack",
-    "heroku-postbuild": "ng build --prod",
     "dev": "nodemon ./server.js localhost 3080",
     "publishToHeroku": "cd ../ && git subtree push --prefix node_api heroku-app-backend main || true"
   },
