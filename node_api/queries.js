@@ -1,14 +1,26 @@
 const restrictedData = require('./restrictedData');
 const { v4: uuidv4 } = require('uuid');
 
-const Pool = require('pg').Pool
-const pool = new Pool({
+
+let devConfig = {
   user: 'devuser',
   host: 'localhost',
   database: 'surveysystemicconsensus',
   password: restrictedData.password,
   port: 5432,
-})
+}
+
+let herokuConfig = {
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+}
+
+process.env.SOME_VARIABLE ? let config = herokuConfig : let config = devConfig
+
+const Pool = require('pg').Pool
+const pool = new Pool(config)
 
 const getSurveys = (request, response) => {
   pool.query('SELECT * FROM surveys', (error, results) => {
