@@ -1,12 +1,18 @@
 {
   "name": "node_api",
   "version": "1.0.0",
+  "engines": {
+    "node": "15.x",
+    "npm": "6.x"
+  },
   "description": "Server side for survey systemic consensus react app",
   "main": "index.js",
   "scripts": {
     "start": "node server.bundle.js",
     "build": "webpack",
-    "dev": "nodemon ./server.js localhost 3080"
+    "heroku-postbuild": "ng build --prod",
+    "dev": "nodemon ./server.js localhost 3080",
+    "publishToHeroku": "cd ../ && git subtree push --prefix node_api heroku-app-backend main || true"
   },
   "author": "Sabine Frister",
   "license": "ISC",
@@ -14,7 +20,9 @@
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "pg": "^8.5.1",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "webpack": "^5.18.0",
+    "webpack-cli": "^4.4.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"

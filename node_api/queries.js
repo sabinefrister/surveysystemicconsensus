@@ -17,7 +17,7 @@ let herokuConfig = {
   }
 }
 
-process.env.SOME_VARIABLE ? let config = herokuConfig : let config = devConfig
+process.env.DATABASE_URL ? let config = herokuConfig : let config = devConfig
 
 const Pool = require('pg').Pool
 const pool = new Pool(config)
