@@ -1,5 +1,5 @@
 body {
-	background-color: #1e2761 !important;
+	background-color: #FFFFFF !important;
 }
 
 .container:first-child {
@@ -15,37 +15,39 @@ h1, h2 {
 }
 
 h1.ui.header, h2.ui.header, h3.ui.header {
-	color: #FFFFFF;
+	color: #4a536b;
 }
 
 .ui.menu .item.icon-header {
 	font-size: 2rem;
-	color: #FFFFFF;
+	color: #4a536b;
 }
 
 .ui.menu .item.nav-header {
 	font-size: 2rem;
-	color: #FFFFFF;
+	color: #4a536b;
 }
 
 .ui.button, .ui.input {
-	border: 2px solid #7a2048 !important;
+	border: 2px solid #ff9a8d !important;
 	border-radius: 0.3rem;
-	background-color: #1e2761 !important;
-	color: #FFFFFF !important;
+	background-color: #FFFFFF !important;
+	color: #4a536b !important;
 }
 
 .ui.button:hover {
-	background-color: #7a2048 !important;
+	background-color: #ff9a8d !important;
+	color: #FFFFFF !important;
+
 }
 
 .ui.secondary.pointing.menu {
-	border-bottom: 2px solid #7a2048 !important;
+	border-bottom: 2px solid #ff9a8d !important;
 }
 
 .ui {
    font-family: 'Quicksand', sans-serif !important;
-   color: #FFFFFF;
+   color: #4a536b;
 }
 
 .ui p {  
@@ -58,27 +60,27 @@ h1.ui.header, h2.ui.header, h3.ui.header {
 	margin: 4rem auto !important;
 	min-height: 40vh;
 	width: 80vw;
-	background-color: #1e2761;
-	border: 2px solid #7a2048;
+	background-color: #FFFFFF;
+	border: 2px solid #ff9a8d;
 	box-shadow: 0 16px 28px 0 rgba(0,0,0,.22);
 }
 
 .ui.table {
-	border: 2px solid #7a2048 !important;
+	border: 2px solid #ff9a8d !important;
 }
 
 .ui.table colgroup #winner, #winner {
-	background-color: #9c2259 !important;
+	background-color: #ffb1a7 !important;
 }
 
 thead td {
 	font-weight: bold;
-	border-bottom: 2px solid #7a2048;
+	border-bottom: 2px solid #ff9a8d;
 }
 
 .ui.table tfoot td {
 	font-weight: bold;
-	border-top: 2px solid #7a2048 !important;
+	border-top: 2px solid #ff9a8d !important;
 }
 
 div .circular-winner {
@@ -88,8 +90,8 @@ div .circular-winner {
 
 div#circular-winner:first-child {
 	padding-top: 5rem;
-	background-color: #7a2048;
-	border: 2px solid #FFFFFF;
+	background-color: #ff9a8d;
+	border: 2px solid #ffb1a7;
 }
 
 #create-button {
@@ -97,7 +99,7 @@ div#circular-winner:first-child {
 }
 
 #survey-title {
-	positon: absolute;
+	position: absolute;
 	right: 0px;
 }
 

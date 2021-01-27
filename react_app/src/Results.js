@@ -15,7 +15,9 @@ class Results extends Component {
 			      <Header as='h2' inverted>
 			        Winner:
 			        <Header.Subheader>
-			        	Option {winningOptionIndex+1}: 
+			        	Option {winningOptionIndex+1} - 
+		        	</Header.Subheader>
+		        	<Header.Subheader>
 			        	{this.props.surveyData.options[winningOptionIndex].option}
 		        	</Header.Subheader>
 			      </Header>
