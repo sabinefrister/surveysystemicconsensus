@@ -30,3 +30,5 @@ exports.getParticipantData = getParticipantData;
 exports.getSurveyDataFromServer = getSurveyDataFromServer;
 exports.createSurvey = createSurvey;
 exports.createParticipantData = createParticipantData;
+
+export default {getParticipantData, getSurveyDataFromServer, createSurvey, createParticipantData}
