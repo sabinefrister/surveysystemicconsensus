@@ -1,4 +1,10 @@
-const restrictedData = require('./restrictedData');
+let restrictedData;
+try {
+  restrictedData = require('./restrictedData')
+} catch(e) {
+  restrictedData = {passwort: "abc"}
+}
+
 const { v4: uuidv4 } = require('uuid');
 
 
@@ -6,7 +12,7 @@ let devConfig = {
   user: 'devuser',
   host: 'localhost',
   database: 'surveysystemicconsensus',
-  password: restrictedData.password || "abc",
+  password: restrictedData.password ,
   port: 5432,
 }
 
