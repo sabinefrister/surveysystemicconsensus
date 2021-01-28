@@ -8,8 +8,8 @@
   "description": "Server side for survey systemic consensus react app",
   "main": "index.js",
   "scripts": {
-    "start": "node server.bundle.js",
-    "dev": "nodemon ./server.js localhost 3080",
+    "start": "node index.js",
+    "dev": "nodemon ./server.js localhost 8080",
     "publishToHeroku": "cd ../ && git subtree push --prefix node_api heroku-app-backend main || true"
   },
   "author": "Sabine Frister",

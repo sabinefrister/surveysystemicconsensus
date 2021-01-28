@@ -1,6 +1,10 @@
 {
   "name": "surveysystemicconsensus",
   "version": "0.1.0",
+  "engines": {
+    "node": "15.x",
+    "npm": "6.x"
+  },
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
