@@ -6,7 +6,7 @@ let devConfig = {
   user: 'devuser',
   host: 'localhost',
   database: 'surveysystemicconsensus',
-  password: restrictedData.password,
+  password: restrictedData.password || "abc",
   port: 5432,
 }
 
