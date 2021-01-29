@@ -1,6 +1,6 @@
 const herokuURL = "https://survey-sc-backend.herokuapp.com";
-let url = "";
-process.env.PRODUCTION ? url = herokuURL : url = "";
+let url;
+process.env.NODE_ENV === "production" ? url = herokuURL : url = "";
 
 async function getParticipantData() {
     const response = await fetch(url + '/api/participant-data');
