@@ -1,5 +1,4 @@
-const herokuURL = "https://ccs-node-api.herokuapp.com";
-
+const herokuURL = "https://survey-sc-backend.herokuapp.com";
 let url = "";
 process.env.PRODUCTION ? url = herokuURL : url = "";
 
