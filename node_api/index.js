@@ -6,7 +6,7 @@ const app = express(),
       bodyParser = require("body-parser");
 
 const corsOptions = {
-	origin: 'https://surveysystemicconsensus.herokuapp.com/',
+	origin: 'https://surveysystemicconsensus.herokuapp.com',
 }
 app.use(cors(corsOptions))
       
