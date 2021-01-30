@@ -1,8 +1,14 @@
 const express = require('express');
 const db = require('./queries')
+var cors = require('cors')
 
 const app = express(),
       bodyParser = require("body-parser");
+
+const corsOptions = {
+	origin: 'https://surveysystemicconsensus.herokuapp.com/',
+}
+app.use(cors(corsOptions))
       
 const port = process.env.PORT || 8080
 
